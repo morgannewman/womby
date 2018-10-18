@@ -1,11 +1,16 @@
 import React from 'react';
-import { Landing } from '../Landing';
-import { shallow } from 'enzyme';
+import ConnectedLanding, { Landing } from '../Landing';
+import { Provider } from 'redux';
+import { shallow, mount } from 'enzyme';
 
 describe('Landing', () => {
   let wrapper;
   beforeEach(() => { wrapper = shallow(<Landing />) });
-  it('Should render without crashing', () => {
-    wrapper;
+
+  it('Renders without crashing', () => {});
+
+  it('Redirects when logged in', () => {
+    
   });
+
 });

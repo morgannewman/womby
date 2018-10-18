@@ -1,0 +1,39 @@
+.layout {
+  /* background-color: black; */
+  display: flex;
+  flex-wrap: nowrap;
+  height: 85vh;
+  min-height: 600px;
+}
+
+.top {
+  width: 100%;
+}
+
+// Temporary toolbar fix
+.layout h3 {
+  margin-top: 0;
+}
+
+.layout-left {
+  background-color: tan;
+  flex-basis: 20%;
+}
+
+.layout-right {
+  background-color: pink;
+  width: 70%;
+  flex-direction: column;
+  flex-grow: 2;
+}
+
+.layout-right-top {
+  background-color: yellow;
+  order: -1;
+  height: 64px;
+}
+
+.layout-right-bottom {
+  order: 1;
+  height: 70%;
+}

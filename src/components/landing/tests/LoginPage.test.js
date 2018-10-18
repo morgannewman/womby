@@ -5,7 +5,9 @@ import { shallow } from 'enzyme';
 describe('LoginPage', () => {
   let wrapper;
   beforeEach(() => { wrapper = shallow(<LoginPage />) });
-  it('Should render without crashing', () => {
-    wrapper;
+  it('Should render without crashing', () => {});
+
+  it('Should embed a login form', () => {
+
   });
 });

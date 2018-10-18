@@ -1,9 +1,9 @@
 import React from 'react';
-import LoginForm from '../LoginForm';
+import { Sidebar } from '../Sidebar';
 import { shallow } from 'enzyme';
 
-describe('LoginForm', () => {
+describe('Sidebar', () => {
   let wrapper;
-  beforeEach(() => { wrapper = shallow(<LoginForm />) });
+  beforeEach(() => { wrapper = shallow(<Sidebar />) });
   it('Should render without crashing', () => {});
 });
