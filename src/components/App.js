@@ -1,11 +1,59 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Route, withRouter, Switch } from 'react-router-dom';
+import Landing from './landing/Landing';
+import Workbench from './workbench/Workbench';
+import HeaderBar from './HeaderBar';
+import { refreshAuthToken } from '../actions/auth';
 
-class App extends Component {
+const mapStateToProps = state => ({
+  hasAuthToken: state.auth.authToken !== null,
+  loggedIn: state.auth.currentUser !== null
+});
+
+export class App extends React.Component {
   render() {
+    // If logged in:
+      // Workbench
+    // else
+      // Landing
     return (
-      <h1>Hello world!</h1>
+      <div className="app">
+        <HeaderBar />
+        <Switch>
+          <Route path="/home" component={Workbench} />
+          <Route path="/" component={Landing} />
+        </Switch>
+      </div>
     );
   }
+
+  componentDidUpdate(prevProps) {
+    // Runs on first render after login
+    if (!prevProps.loggedIn && this.props.loggedIn) this.startPeriodicRefresh();
+    // Runs on first render after out
+    else if (prevProps.loggedIn && !this.props.loggedIn) this.stopPeriodicRefresh();
+  }
+
+  componentWillUnmount() {
+    this.stopPeriodicRefresh();
+  }
+
+  startPeriodicRefresh() {
+    this.refreshInterval = setInterval(
+      () => this.props.dispatch(refreshAuthToken()),
+      60 * 60 * 1000 // 1 hour
+    );
+  }
+
+  stopPeriodicRefresh() {
+    if (!this.refreshInterval) {
+      return;
+    }
+    clearInterval(this.refreshInterval);
+  }
+
 }
 
-export default App;
+// Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
+export default withRouter(connect(mapStateToProps)(App));
