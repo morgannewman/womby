@@ -1,5 +1,5 @@
-import { API_BASE_URL } from '../common/config';
-import { normalizeResponseErrors } from '../common/utils';
+import { API_BASE_URL } from '../common/config'
+import { normalizeResponseErrors } from '../common/utils'
 
 /**
  * Register a new user with the database backend.
@@ -17,5 +17,5 @@ export const register = user => {
     body: JSON.stringify(user)
   })
     .then(res => normalizeResponseErrors(res))
-    .then(res => res.json());
-};
+    .then(res => res.json())
+}

@@ -1,12 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
 export class Editor extends React.Component {
   render() {
-    return (
-      <h3>Editor</h3>
-    );
+    return <h3>Editor</h3>
   }
 }
 
-export default connect()(Editor);
+export default connect()(Editor)

@@ -1,5 +1,6 @@
-import { refresh, login } from './endpoints/auth';
-import { register } from './endpoints/users';
+import { refresh, login } from './endpoints/auth'
+import { register } from './endpoints/users'
+import { get } from './endpoints/notes'
 
 /**
  * Interface for interacting with the backend/database.
@@ -17,5 +18,11 @@ export const db = {
    */
   users: {
     register
+  },
+  /**
+   * Interface for the notes endpoint.
+   */
+  notes: {
+    get
   }
 }

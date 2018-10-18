@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import RegistrationForm from './RegistrationForm';
+import RegistrationForm from './RegistrationForm'
 
 export function RegistrationPage(props) {
   return (
@@ -11,11 +11,11 @@ export function RegistrationPage(props) {
       <RegistrationForm />
       <Link to="/">Login</Link>
     </div>
-  );
+  )
 }
 
 const mapStateToProps = state => ({
   loggedIn: state.auth.currentUser !== null
-});
+})
 
-export default connect(mapStateToProps)(RegistrationPage);
+export default connect(mapStateToProps)(RegistrationPage)

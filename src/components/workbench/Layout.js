@@ -1,8 +1,8 @@
-import React from 'react';
-import './Layout.scss';
+import React from 'react'
+import './Layout.scss'
 
 export default function Layout(props) {
-  const { left, right, top, rightTop } = props;
+  const { left, right, top, rightTop } = props
   return (
     <React.Fragment>
       <div className="layout-top">{top}</div>
@@ -14,5 +14,5 @@ export default function Layout(props) {
         </div>
       </div>
     </React.Fragment>
-  );
+  )
 }
