@@ -1,9 +1,9 @@
 import React from 'react';
-import LoginForm from '../LoginForm';
+import { Editor } from '../Editor';
 import { shallow } from 'enzyme';
 
-describe('LoginForm', () => {
+describe('Editor', () => {
   let wrapper;
-  beforeEach(() => { wrapper = shallow(<LoginForm />) });
+  beforeEach(() => { wrapper = shallow(<Editor />) });
   it('Should render without crashing', () => {});
 });

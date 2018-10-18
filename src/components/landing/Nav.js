@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { logout } from '../actions/auth';
+import { logout } from '../../actions/auth';
 
 export class HeaderBar extends React.Component {
   handleLogout = () => {
