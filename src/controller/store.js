@@ -4,14 +4,12 @@ import thunk from 'redux-thunk'
 import { cache } from '../db/cache'
 import { setAuthToken, refreshAuthToken } from './actions/auth'
 import authReducer from './reducers/auth'
-import notesReducer from './reducers/notes'
 import workbenchReducer from './reducers/workbench'
 
 const store = createStore(
   combineReducers({
     form: formReducer,
     auth: authReducer,
-    notes: notesReducer,
     workbench: workbenchReducer
   }),
   applyMiddleware(thunk)

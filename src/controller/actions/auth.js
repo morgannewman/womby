@@ -1,6 +1,5 @@
 import jwtDecode from 'jwt-decode'
 import { SubmissionError } from 'redux-form'
-
 import { cache } from '../../db/cache'
 import { db } from '../../db/db'
 
@@ -87,4 +86,22 @@ export const refreshAuthToken = () => (dispatch, getState) => {
 export const logout = () => dispatch => {
   dispatch(clearAuth())
   cache.authToken.clear()
+}
+
+export const registerUser = user => dispatch => {
+  const { email, password } = user
+  return db.users
+    .register(user)
+    .then(() => dispatch(login(email, password)))
+    .catch(err => {
+      const { reason, message, location } = err
+      if (reason === 'ValidationError') {
+        // Convert ValidationErrors into SubmissionErrors for Redux Form
+        return Promise.reject(
+          new SubmissionError({
+            [location]: message
+          })
+        )
+      }
+    })
 }
