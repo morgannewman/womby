@@ -1,9 +1,8 @@
 import './Sidebar.scss'
 import React from 'react'
-import { connect } from 'react-redux'
 import NotesList from './NotesList'
 
-export class Sidebar extends React.Component {
+export default class Sidebar extends React.Component {
   render() {
     return (
       <aside className="sidebar">
@@ -12,5 +11,3 @@ export class Sidebar extends React.Component {
     )
   }
 }
-
-export default connect()(Sidebar)

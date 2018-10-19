@@ -18,3 +18,21 @@ export const get = () => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
 }
+
+export const updateDocument = (id, document) => {
+  const authToken = cache.authToken.load()
+  return fetch(`${BASE_URL}/${id}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json'
+    },
+    query: '',
+    body: JSON.stringify({
+      id,
+      document
+    })
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+}

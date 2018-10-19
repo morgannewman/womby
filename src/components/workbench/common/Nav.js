@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { logout } from '../../controller/actions/auth'
+import { logout } from '../../../controller/actions/auth'
 import './Nav.scss'
 
 export class Nav extends React.Component {

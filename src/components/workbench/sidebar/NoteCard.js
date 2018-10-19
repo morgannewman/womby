@@ -12,7 +12,6 @@ export class NoteCard extends React.Component {
 
   render() {
     const { title, updatedAt, id } = this.props.note
-    console.log(this.props.isActiveNote)
     return (
       <Link
         to={{ search: `note=${id}` }}
@@ -35,7 +34,9 @@ export class NoteCard extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  isCurrentNote: state.workbench.currentNote === props.note.id
+  isCurrentNote: state.workbench.currentNote
+    ? state.workbench.currentNote.id === props.note.id
+    : false
 })
 
 export default connect(mapStateToProps)(NoteCard)
