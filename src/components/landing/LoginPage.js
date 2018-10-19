@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import LoginForm from './LoginForm';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import LoginForm from './LoginForm'
 
 export function LoginPage(props) {
   return (
@@ -8,6 +8,6 @@ export function LoginPage(props) {
       <LoginForm />
       <Link to="/register">Register</Link>
     </div>
-  );
+  )
 }
-export default LoginPage;
+export default LoginPage
