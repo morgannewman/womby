@@ -11,6 +11,7 @@
   margin-bottom: 16px;
   background-color: plum;
   text-decoration: none;
+  position: relative;
 }
 
 .sidebar-notes-card-title {
@@ -22,4 +23,9 @@
 }
 
 .sidebar-notes-card-date {
+}
+
+.sidebar-notes-card-delete {
+  float: right;
+  z-index: 1;
 }

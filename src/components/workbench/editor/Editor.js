@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Editor as Slate } from 'slate-react'
 import { Value } from 'slate'
-import { updateCurrentNote } from '../../../controller/actions/workbench'
+import { updateNote } from '../../../controller/actions/workbench'
 
 // If the currentNote === null
 // Don't render editor
@@ -43,7 +43,7 @@ export class Editor extends React.Component {
       const document = value.toJSON()
       // console.log(JSON.stringify(document))
       this.props.dispatch(
-        updateCurrentNote(this.props.currentNote.id, document)
+        updateNote(this.props.currentNote.id, document)
       )
     }
 
@@ -56,7 +56,6 @@ export class Editor extends React.Component {
   }
 
   render() {
-    console.log(typeof this.props.currentNote)
     return (
       <div className="editor-container">
         <Slate

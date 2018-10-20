@@ -2,12 +2,22 @@ import React from 'react'
 import { parseDate } from '../common/parseDate'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { setCurrentNote } from '../../../controller/actions/workbench'
+import {
+  setCurrentNote,
+  deleteNote
+} from '../../../controller/actions/workbench'
 
 export class NoteCard extends React.Component {
   handleClick = e => {
-    const noteId = e.currentTarget.dataset.id
-    this.props.dispatch(setCurrentNote(noteId))
+    const { id } = this.props.note
+    this.props.dispatch(setCurrentNote(id))
+  }
+
+  handleDeleteClick = e => {
+    e.preventDefault()
+    e.stopPropagation()
+    const { id } = this.props.note
+    this.props.dispatch(deleteNote(id))
   }
 
   render() {
@@ -27,6 +37,13 @@ export class NoteCard extends React.Component {
           <time className="sidebar-notes-card-date">
             {parseDate.long(updatedAt)}
           </time>
+          <button
+            className="sidebar-notes-card-delete"
+            onClick={this.handleDeleteClick}
+            role="button"
+          >
+            Delete
+          </button>
         </li>
       </Link>
     )
