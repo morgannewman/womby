@@ -11,19 +11,19 @@ export const setCurrentNoteError = () => ({
   type: SET_CURRENT_NOTE_ERROR
 })
 
-export const UPDATE_CURRENT_NOTE_REQUEST = 'UPDATE_CURRENT_NOTE_REQUEST'
-export const updateCurrentNoteRequest = () => ({
-  type: UPDATE_CURRENT_NOTE_REQUEST
+export const UPDATE_NOTE_REQUEST = 'UPDATE_NOTE_REQUEST'
+export const updateNoteRequest = () => ({
+  type: UPDATE_NOTE_REQUEST
 })
 
-export const UPDATE_CURRENT_NOTE_SUCCESS = 'UPDATE_CURRENT_NOTE_SUCCESS'
-export const updateCurrentNoteSuccess = () => ({
-  type: UPDATE_CURRENT_NOTE_SUCCESS
+export const UPDATE_NOTE_SUCCESS = 'UPDATE_NOTE_SUCCESS'
+export const updateNoteSuccess = () => ({
+  type: UPDATE_NOTE_SUCCESS
 })
 
-export const UPDATE_CURRENT_NOTE_ERROR = 'UPDATE_CURRENT_NOTE_ERROR'
-export const updateCurrentNoteError = () => ({
-  type: UPDATE_CURRENT_NOTE_ERROR
+export const UPDATE_NOTE_ERROR = 'UPDATE_NOTE_ERROR'
+export const updateNoteError = () => ({
+  type: UPDATE_NOTE_ERROR
 })
 
 export const setCurrentNote = id => (dispatch, getState) => {
@@ -36,25 +36,25 @@ export const setCurrentNote = id => (dispatch, getState) => {
   }
 }
 
-export const OPTIMISTIC_UPDATE_CURRENT_NOTE = 'OPTIMISTIC_UPDATE_CURRENT_NOTE'
-export const optimisticallyUpdateCurrentNote = (id, document) => ({
-  type: OPTIMISTIC_UPDATE_CURRENT_NOTE,
+export const OPTIMISTIC_UPDATE_NOTE = 'OPTIMISTIC_UPDATE_NOTE'
+export const optimisticallyUpdateNote = (id, document) => ({
+  type: OPTIMISTIC_UPDATE_NOTE,
   payload: {
     id,
     document
   }
 })
 
-export const updateCurrentNote = (id, document) => (dispatch, getState) => {
+export const updateNote = (id, document) => (dispatch, getState) => {
   // Make change locally
-  dispatch(optimisticallyUpdateCurrentNote(id, document))
+  dispatch(optimisticallyUpdateNote(id, document))
   // Send update to DB
-  dispatch(updateCurrentNoteRequest())
+  dispatch(updateNoteRequest())
   db.notes
     .updateDocument(id, document)
-    .then(() => dispatch(updateCurrentNoteSuccess(id, document)))
+    .then(() => dispatch(updateNoteSuccess(id, document)))
     // On success, update redux store
-    .catch(err => dispatch(updateCurrentNoteError()))
+    .catch(err => dispatch(updateNoteError()))
 }
 
 export const NOTE_REQUEST_SEND = 'NOTE_REQUEST_SEND'
@@ -84,4 +84,37 @@ export const populateNotes = () => dispatch => {
       // Handle failure
       .catch(err => console.log(err))
   )
+}
+export const OPTIMISTIC_DELETE_NOTE = 'OPTIMISTIC_DELETE_NOTE'
+export const optimisticallyDeleteNote = id => ({
+  type: OPTIMISTIC_DELETE_NOTE,
+  payload: { id }
+})
+
+export const DELETE_NOTE_SUCCESS = 'DELETE_NOTE_SUCCESS'
+export const deleteNoteSuccess = () => ({
+  type: DELETE_NOTE_SUCCESS
+})
+export const DELETE_NOTE_ERROR = 'DELETE_NOTE_ERROR'
+export const deleteNoteError = () => ({
+  type: DELETE_NOTE_ERROR
+})
+
+export const deleteNote = id => dispatch => {
+  console.log('delete action dispatched for', id)
+  // delete note from local state
+  dispatch(optimisticallyDeleteNote(id))
+  // delete note from DB
+  return db.notes
+    .remove(id)
+    .then(() => dispatch(deleteNoteSuccess()))
+    .catch(err => dispatch(deleteNoteError()))
+}
+
+export const addNewNote = title => dispatch => {
+  // TODO: Figure out an optimistic way to implement this functionality
+  db.notes.add(title).then(note => {
+    const id = note.id
+    dispatch(populateNotes()).then(() => dispatch(setCurrentNote(id)))
+  })
 }

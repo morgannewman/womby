@@ -27,10 +27,37 @@ export const updateDocument = (id, document) => {
       Authorization: `Bearer ${authToken}`,
       'Content-Type': 'application/json'
     },
-    query: '',
     body: JSON.stringify({
       id,
       document
+    })
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+}
+
+export const remove = id => {
+  const authToken = cache.authToken.load()
+  return fetch(`${BASE_URL}/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${authToken}`
+    }
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+}
+
+export const add = title => {
+  const authToken = cache.authToken.load()
+  return fetch(BASE_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      title
     })
   })
     .then(res => normalizeResponseErrors(res))
