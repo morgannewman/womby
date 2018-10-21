@@ -1,3 +1,5 @@
+import produce from 'immer'
+
 import {
   SET_AUTH_TOKEN,
   CLEAR_AUTH,
@@ -13,44 +15,34 @@ const initialState = {
   error: null
 }
 
-export default function reducer(state = initialState, action) {
+/**
+ * This state is an immutable data structure produced by immer. State should be modified "in place".
+ */
+export default produce((state, action) => {
   switch (action.type) {
     case SET_AUTH_TOKEN:
-      return {
-        ...state,
-        authToken: action.authToken
-      }
+      state.authToken = action.authToken
+      return
 
     case CLEAR_AUTH:
-      return {
-        ...state,
-        authToken: null,
-        currentUser: null,
-        inactiveUser: false
-      }
+      return initialState
 
     case AUTH_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        error: null
-      }
+      state.loading = true
+      state.error = null
+      return
 
     case AUTH_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        currentUser: action.currentUser
-      }
+      state.loading = false
+      state.currentUser = action.currentUser
+      return
 
     case AUTH_ERROR:
-      return {
-        ...state,
-        loading: false,
-        error: action.error
-      }
+      state.loading = false
+      state.error = action.error
+      return
 
     default:
-      return state
+      return
   }
-}
+}, initialState)

@@ -1,3 +1,4 @@
+import produce from 'immer'
 import {
   SET_CURRENT_NOTE_SUCCESS,
   SET_CURRENT_NOTE_ERROR,
@@ -13,50 +14,39 @@ const initialState = {
   loadingNotes: false
 }
 
-export default function(state = initialState, action) {
-  let notes
+/**
+ * This state is an immutable data structure produced by immer. State should be modified "in place".
+ */
+export default produce((state, action) => {
   switch (action.type) {
     case SET_CURRENT_NOTE_SUCCESS:
-      return {
-        ...state,
-        currentNote: action.payload
-      }
+      state.currentNote = action.payload
+      return
 
     case NOTE_REQUEST_SEND:
-      return {
-        ...state,
-        loadingNotes: true
-      }
+      state.loadingNotes = true
+      return
 
     case OPTIMISTIC_UPDATE_NOTE:
-      notes = [...state.notes]
       const note = state.notes.find(note => note.id === action.payload.id)
       note.document = action.payload.document
-      return {
-        ...state,
-        notes
-      }
+      return
 
     case OPTIMISTIC_DELETE_NOTE:
-      notes = [...state.notes]
+      // Delete note from state
       const index = state.notes.findIndex(note => note.id === action.payload.id)
-      notes.splice(index, 1)
-      return {
-        ...state,
-        notes,
-        // handle deleting current note
-        currentNote:
-          state.currentNote.id === action.payload.id ? null : state.currentNote
-      }
+      state.notes.splice(index, 1)
+      // handle deleting current note
+      state.currentNote =
+        state.currentNote.id === action.payload.id ? null : state.currentNote
+      return
 
     case NOTE_REQUEST_SUCCESS:
-      return {
-        ...state,
-        loadingNotes: false,
-        notes: action.notes
-      }
+      state.loadingNotes = false
+      state.notes = action.notes
+      return
 
     default:
-      return state
+      return
   }
-}
+}, initialState)

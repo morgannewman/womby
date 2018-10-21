@@ -6,6 +6,7 @@
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "fecha": "^2.3.3",
+    "immer": "^1.7.2",
     "immutable": "^3.8.2",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.11",
