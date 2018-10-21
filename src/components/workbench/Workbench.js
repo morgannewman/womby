@@ -1,3 +1,4 @@
+import './Workbench.scss'
 // modules
 import React from 'react'
 import { connect } from 'react-redux'
@@ -6,7 +7,6 @@ import { Value } from 'slate'
 import { populateNotes } from '../../controller/actions/workbench'
 // common
 import requiresLogin from '../common/RequiresLogin'
-import Layout from './common/Layout'
 // workbench
 import Sidebar from './sidebar/Sidebar'
 import Editor from './editor/Editor'
@@ -25,18 +25,26 @@ export class Workbench extends React.Component {
 
   render() {
     return (
-      <Layout
-        left={<Sidebar />}
-        right={
-          this.props.currentNote ? (
-            <Editor initialValue={this.generateEditorValueFromNote()} />
-          ) : (
-            <div>no editor</div>
-          )
-        }
-        rightTop={<Toolbar />}
-        top={<Nav />}
-      />
+      <React.Fragment>
+        <Nav />
+        <div className="workbench">
+          <div className="workbench-sidebar">
+            <Sidebar />
+          </div>
+          <main className="workbench-editor-container">
+            <div className="workbench-editor-toolbar">
+              <Toolbar />
+            </div>
+            <div className="workbench-editor">
+              {this.props.currentNote ? (
+                <Editor initialValue={this.generateEditorValueFromNote()} />
+              ) : (
+                <div>no editor</div>
+              )}
+            </div>
+          </main>
+        </div>
+      </React.Fragment>
     )
   }
 }

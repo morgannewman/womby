@@ -3,7 +3,11 @@ import { connect } from 'react-redux'
 
 export class Toolbar extends React.Component {
   render() {
-    return <h3>Toolbar</h3>
+    return (
+      <div className="toolbar">
+        <h3>Toolbar</h3>
+      </div>
+    )
   }
 }
 

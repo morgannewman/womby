@@ -42,9 +42,7 @@ export class Editor extends React.Component {
     if (value.document !== this.state.value.document) {
       const document = value.toJSON()
       // console.log(JSON.stringify(document))
-      this.props.dispatch(
-        updateNote(this.props.currentNote.id, document)
-      )
+      this.props.dispatch(updateNote(this.props.currentNote.id, document))
     }
 
     this.setState({ value })
@@ -57,7 +55,7 @@ export class Editor extends React.Component {
 
   render() {
     return (
-      <div className="editor-container">
+      <div className="editor">
         <Slate
           className="editor"
           value={this.state.value}

@@ -1,39 +1,39 @@
-.layout {
-  /* background-color: black; */
+/**
+ * THIS FILE DEFINES THE LAYOUT OF THE WORKBENCH AREA 
+ */
+
+.workbench {
   display: flex;
   flex-wrap: nowrap;
   height: 85vh;
   min-height: 600px;
 }
 
-.top {
-  width: 100%;
-}
-
 // Temporary toolbar fix
-.layout h3 {
+.workbench h3 {
   margin-top: 0;
 }
 
-.layout-left {
+.workbench-sidebar {
   background-color: tan;
   flex-basis: 20%;
 }
 
-.layout-right {
+.workbench-editor-container {
   background-color: pink;
+  height: 100%;
   width: 70%;
   flex-direction: column;
   flex-grow: 2;
 }
 
-.layout-right-top {
+.workbench-editor-toolbar {
   background-color: yellow;
   order: -1;
   height: 64px;
 }
 
-.layout-right-bottom {
+.workbench-editor {
   order: 1;
   height: 100%;
   position: relative;
