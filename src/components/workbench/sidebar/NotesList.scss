@@ -1,31 +1,59 @@
-.sidebar a {
-  text-decoration: none;
-}
+@import '../../../scss/button-reset';
+@import '../../../scss/colors';
+
+$card-height: 64px;
+
 .sidebar-notes {
-  padding: 0 8px;
+  padding: 0px;
   list-style: none;
   text-align: left;
 }
 
 .sidebar-notes-card {
-  margin-bottom: 16px;
-  background-color: plum;
+  width: 100%;
+  color: white;
   text-decoration: none;
-  position: relative;
+  display: flex;
+  // justify-content: space-between;
+  border-bottom: 1px solid $primary-contrast-1;
+  height: $card-height;
+}
+
+.sidebar-notes-card-link {
+  @include button-reset;
+  flex-basis: 92%;
+  text-align: left;
+  padding-left: 16px;
 }
 
 .sidebar-notes-card-title {
+  font-size: 1.1em;
   margin: 0px;
-}
-
-.sidebar-notes-card-active {
-  background-color: yellow;
+  display: inline-block;
+  // Ellipsis
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 300px;
 }
 
 .sidebar-notes-card-date {
+  display: flex;
+  align-self: flex-end;
 }
 
-.sidebar-notes-card-delete {
-  float: right;
-  z-index: 1;
+.sidebar-notes-card-menu {
+  @include button-reset;
+  flex-basis: 8%;
+  height: 100%;
+}
+
+.sidebar-notes-card-menu-icon {
+}
+
+.sidebar-notes-card-active {
+  background-color: $primary-contrast-2;
+  &:focus-within {
+    background-color: $primary-focus;
+  }
 }

@@ -1,7 +1,14 @@
-.editor {
+.editor-container {
   height: 100%;
-  overflow: hidden;
+  margin-bottom: 32px;
+  // overflow: scroll;
+}
+
+.editor {
+  min-height: 100%;
   background-color: #fcf8f2;
   text-align: left;
-  padding: 32px 64px;
+  padding: 64px 128px;
+  margin-bottom: 32px;
+  // overflow: scroll;
 }

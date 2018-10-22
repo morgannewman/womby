@@ -1,0 +1,45 @@
+@import '../../../scss/button-reset';
+@import '../../../scss/colors';
+
+.sidebar {
+  background-color: $primary;
+  height: 100%;
+  // width: 50%;
+  border-right: 1px solid $primary-contrast-1;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  background-color: $primary-contrast-3;
+}
+
+.sidebar-button {
+  @include button-reset;
+  color: white;
+}
+
+.sidebar-button-image {
+  vertical-align: middle;
+  font-size: 2em;
+}
+
+.sidebar-button-image:hover,
+.sidebar-button-image:active {
+  // TODO: Add hover effect
+}
+
+.sidebar-title {
+  color: white;
+  font-size: 1.8em;
+}
+
+.sidebar-divider {
+  width: 100%;
+  border-bottom: 1px solid $primary-contrast-1;
+}
+
+.sidebar ul {
+  margin: 0;
+}

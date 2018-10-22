@@ -55,7 +55,7 @@ export class Editor extends React.Component {
 
   render() {
     return (
-      <div className="editor">
+      <div className="editor-container">
         <Slate
           className="editor"
           value={this.state.value}

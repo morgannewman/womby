@@ -118,3 +118,8 @@ export const addNewNote = title => dispatch => {
     dispatch(populateNotes()).then(() => dispatch(setCurrentNote(id)))
   })
 }
+
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
+export const toggleSidebar = () => ({
+  type: TOGGLE_SIDEBAR
+})

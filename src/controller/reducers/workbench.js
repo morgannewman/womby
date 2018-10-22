@@ -5,13 +5,15 @@ import {
   OPTIMISTIC_UPDATE_NOTE,
   OPTIMISTIC_DELETE_NOTE,
   NOTE_REQUEST_SEND,
-  NOTE_REQUEST_SUCCESS
+  NOTE_REQUEST_SUCCESS,
+  TOGGLE_SIDEBAR
 } from '../actions/workbench'
 
 const initialState = {
   currentNote: null,
   notes: null,
-  loadingNotes: false
+  loadingNotes: false,
+  showSidebar: true
 }
 
 /**
@@ -44,6 +46,10 @@ export default produce((state, action) => {
     case NOTE_REQUEST_SUCCESS:
       state.loadingNotes = false
       state.notes = action.notes
+      return
+
+    case TOGGLE_SIDEBAR:
+      state.showSidebar = !state.showSidebar
       return
 
     default:

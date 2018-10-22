@@ -11,7 +11,7 @@ import requiresLogin from '../common/RequiresLogin'
 import Sidebar from './sidebar/Sidebar'
 import Editor from './editor/Editor'
 import Toolbar from './toolbar/Toolbar'
-import Nav from './common/Nav'
+import Header from './common/Header'
 
 export class Workbench extends React.Component {
   componentDidMount() {
@@ -26,12 +26,11 @@ export class Workbench extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Nav />
         <div className="workbench">
           <div className="workbench-sidebar">
             <Sidebar />
           </div>
-          <main className="workbench-editor-container">
+          <main className="workbench-editor-container clearfix">
             <div className="workbench-editor-toolbar">
               <Toolbar />
             </div>

@@ -1,11 +1,12 @@
 /**
  * THIS FILE DEFINES THE LAYOUT OF THE WORKBENCH AREA 
  */
+@import '../../scss/colors';
 
 .workbench {
   display: flex;
   flex-wrap: nowrap;
-  height: 85vh;
+  height: 100vh;
   min-height: 600px;
 }
 
@@ -15,26 +16,28 @@
 }
 
 .workbench-sidebar {
-  background-color: tan;
   flex-basis: 20%;
 }
 
 .workbench-editor-container {
-  background-color: pink;
+  background-color: $primary-contrast-1;
   height: 100%;
-  width: 70%;
-  flex-direction: column;
+  // width: 70%;
+  // flex-direction: column;
   flex-grow: 2;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .workbench-editor-toolbar {
-  background-color: yellow;
+  background-color: $primary-contrast-3;
   order: -1;
-  height: 64px;
+  height: 80px;
 }
 
 .workbench-editor {
   order: 1;
+  // align-self: stretch;
   height: 100%;
-  position: relative;
+  // position: relative;
 }

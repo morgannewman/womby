@@ -1,11 +1,15 @@
+// Libraries
 import React from 'react'
 import { parseDate } from '../common/parseDate'
 import { Link } from 'react-router-dom'
+// Redux
 import { connect } from 'react-redux'
 import {
   setCurrentNote,
   deleteNote
 } from '../../../controller/actions/workbench'
+// Resources
+import { MdClose as Delete } from 'react-icons/md'
 
 export class NoteCard extends React.Component {
   handleClick = e => {
@@ -23,29 +27,29 @@ export class NoteCard extends React.Component {
   render() {
     const { title, updatedAt, id } = this.props.note
     return (
-      <Link
-        to={{ search: `note=${id}` }}
-        data-id={id}
-        onClick={this.handleClick}
+      <li
+        className={`sidebar-notes-card ${
+          this.props.isCurrentNote ? 'sidebar-notes-card-active' : ''
+        }`}
       >
-        <li
-          className={`sidebar-notes-card${
-            this.props.isCurrentNote ? ' sidebar-notes-card-active' : ''
-          }`}
+        <button
+          data-id={id}
+          onClick={this.handleClick}
+          className="sidebar-notes-card-link"
         >
           <h4 className="sidebar-notes-card-title">{title}</h4>
           <time className="sidebar-notes-card-date">
             {parseDate.long(updatedAt)}
           </time>
-          <button
-            className="sidebar-notes-card-delete"
-            onClick={this.handleDeleteClick}
-            role="button"
-          >
-            Delete
-          </button>
-        </li>
-      </Link>
+        </button>
+        <button
+          onClick={this.handleDeleteClick}
+          className="sidebar-notes-card-menu"
+          aria-label={`Delete ${title}`}
+        >
+          <Delete />
+        </button>
+      </li>
     )
   }
 }

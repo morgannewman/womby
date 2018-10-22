@@ -341,9 +341,18 @@ template {
 [hidden] {
   display: none;
 }
+
 /* * * * * * * * * * * * * * * * * * * * * 
  * USER-DEFINED STYLES
  * */
+
+.clearfix:after {
+  content: '.';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
 
 html {
   box-sizing: border-box;
@@ -352,6 +361,14 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+}
+
+html,
+body,
+#app,
+#app > div {
+  height: 100%;
+  // overflow: hidden;
 }
 
 body {
