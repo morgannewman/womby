@@ -27,18 +27,18 @@ export class Workbench extends React.Component {
     return (
       <React.Fragment>
         <div className="workbench">
-          <div className="workbench-sidebar">
-            <Sidebar />
+          <div className="workbench-toolbar">
+            <Toolbar />
           </div>
+          {/* <div className="workbench-sidebar">
+            <Sidebar />
+          </div> */}
           <main className="workbench-editor-container clearfix">
-            <div className="workbench-editor-toolbar">
-              <Toolbar />
-            </div>
             <div className="workbench-editor">
               {this.props.currentNote ? (
                 <Editor initialValue={this.generateEditorValueFromNote()} />
               ) : (
-                <div>no editor</div>
+                <h1 className="workbench-editor-empty">No Note Selected</h1>
               )}
             </div>
           </main>

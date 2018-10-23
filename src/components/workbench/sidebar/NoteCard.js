@@ -32,6 +32,7 @@ export class NoteCard extends React.Component {
           this.props.isCurrentNote ? 'sidebar-notes-card-active' : ''
         }`}
       >
+        {/* TODO: Convert back to button */}
         <button
           data-id={id}
           onClick={this.handleClick}
