@@ -7,10 +7,12 @@ import { Value } from 'slate'
 import { populateNotes } from '../../controller/actions/workbench'
 // common
 import requiresLogin from '../common/RequiresLogin'
+import { Mobile } from '../common/MediaQuery'
 // workbench
 import Sidebar from './sidebar/Sidebar'
 import Editor from './editor/Editor'
-import Toolbar from './toolbar/Toolbar'
+import Toolbar from './menu/Toolbar'
+import MobileMenu from './menu/MobileMenu'
 import Header from './common/Header'
 
 export class Workbench extends React.Component {
@@ -27,12 +29,24 @@ export class Workbench extends React.Component {
     return (
       <React.Fragment>
         <div className="workbench">
-          <div className="workbench-toolbar">
-            <Toolbar />
-          </div>
-          {/* <div className="workbench-sidebar">
-            <Sidebar />
-          </div> */}
+          <Mobile>
+            {matches =>
+              matches ? (
+                <div className="workbench-menu-mobile">
+                  <MobileMenu />
+                </div>
+              ) : (
+                <div className="workbench-menu-toolbar">
+                  <Toolbar />
+                  {this.props.showSidebar && (
+                    <div className="workbench-sidebar">
+                      <Sidebar />
+                    </div>
+                  )}
+                </div>
+              )
+            }
+          </Mobile>
           <main className="workbench-editor-container clearfix">
             <div className="workbench-editor">
               {this.props.currentNote ? (
@@ -49,7 +63,8 @@ export class Workbench extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentNote: state.workbench.currentNote
+  currentNote: state.workbench.currentNote,
+  showSidebar: state.workbench.showSidebar
 })
 
 export default requiresLogin()(connect(mapStateToProps)(Workbench))
