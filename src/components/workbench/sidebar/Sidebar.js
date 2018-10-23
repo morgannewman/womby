@@ -30,48 +30,25 @@ export class Sidebar extends React.Component {
   }
 
   render() {
-    if (!this.props.showSidebar) {
-      return (
+    return (
+      <section className="sidebar">
         <header className="sidebar-header">
-          <button
+          <h2 className="sidebar-title">Notebook</h2>
+          {/* <button
             className="sidebar-button"
-            onClick={this.handleSidebarToggle}
-            aria-label="Toggle sidebar"
-            aria-expanded={this.props.showSidebar}
+            onClick={this.handleAddNoteClick}
+            aria-label="Add new note"
           >
-            <Hide className="sidebar-button-image" />
-          </button>
+            <Plus className="sidebar-button-image" />
+          </button> */}
         </header>
-      )
-    } else {
-      return (
-        <aside className="sidebar">
-          <header className="sidebar-header">
-            <button
-              className="sidebar-button"
-              onClick={this.handleSidebarToggle}
-              aria-label="Toggle sidebar"
-              aria-expanded={this.props.showSidebar}
-            >
-              <Hide className="sidebar-button-image" />
-            </button>
-            <h2 className="sidebar-title">Notebook</h2>
-            <button
-              className="sidebar-button"
-              onClick={this.handleAddNoteClick}
-              aria-label="Add new note"
-            >
-              <Plus className="sidebar-button-image" />
-            </button>
-          </header>
-          {this.state.showAddNoteForm && (
-            <AddNoteForm handleSubmit={this.handleAddNoteSubmit} />
-          )}
-          <div className="sidebar-divider" />
-          <NotesList />
-        </aside>
-      )
-    }
+        {this.state.showAddNoteForm && (
+          <AddNoteForm handleSubmit={this.handleAddNoteSubmit} />
+        )}
+        <div className="sidebar-divider" />
+        <NotesList />
+      </section>
+    )
   }
 }
 

@@ -4,10 +4,12 @@
 @import '../../scss/colors';
 
 .workbench {
-  display: flex;
-  flex-wrap: nowrap;
   height: 100vh;
+  width: 100%;
   min-height: 600px;
+  position: relative;
+  display: flex;
+  flex: none;
 }
 
 // Temporary toolbar fix
@@ -15,15 +17,20 @@
   margin-top: 0;
 }
 
-.workbench-toolbar {
+.workbench-menu-toolbar {
+  display: flex;
   background-color: $primary-contrast-3;
-  order: -1;
   height: 100%;
+  flex-grow: 0;
 }
 
+.workbench-menu-mobile {
+  // MUST take this element out of page flow
+  position: absolute;
+  z-index: 1;
+}
 .workbench-sidebar {
-  flex-basis: 20%;
-  flex-shrink: 0;
+  display: inline-block;
 }
 
 .workbench-editor-container {
@@ -32,8 +39,6 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  // width: 70%;
-  // flex-direction: column;
   flex-grow: 2;
   overflow-y: scroll;
   overflow-x: hidden;

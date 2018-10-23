@@ -2,17 +2,15 @@
 @import '../../../scss/colors';
 
 .sidebar {
-  background-color: $primary;
+  background-color: $primary-complement;
   height: 100%;
-  // width: 50%;
-  border-right: 1px solid $primary-contrast-1;
 }
 
 .sidebar-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 16px;
-  background-color: $primary-contrast-3;
+  text-align: center;
 }
 
 .sidebar-button {

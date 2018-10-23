@@ -32,13 +32,13 @@ export class NoteCard extends React.Component {
           this.props.isCurrentNote ? 'sidebar-notes-card-active' : ''
         }`}
       >
-        {/* TODO: Convert back to button */}
+        {/* TODO: Convert back to link */}
         <button
           data-id={id}
           onClick={this.handleClick}
           className="sidebar-notes-card-link"
         >
-          <h4 className="sidebar-notes-card-title">{title}</h4>
+          <h3 className="sidebar-notes-card-title">{title}</h3>
           <time className="sidebar-notes-card-date">
             {parseDate.long(updatedAt)}
           </time>
