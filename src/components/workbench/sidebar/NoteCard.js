@@ -1,3 +1,4 @@
+import './NoteCard.scss'
 // Libraries
 import React from 'react'
 import { parseDate } from '../common/parseDate'
@@ -36,9 +37,9 @@ export class NoteCard extends React.Component {
         <button
           data-id={id}
           onClick={this.handleClick}
-          className="sidebar-notes-card-link"
+          className="sidebar-notes-card-text"
         >
-          <h3 className="sidebar-notes-card-title">{title}</h3>
+          <h3 className="sidebar-notes-card-title js-shave">{title}</h3>
           <time className="sidebar-notes-card-date">
             {parseDate.long(updatedAt)}
           </time>

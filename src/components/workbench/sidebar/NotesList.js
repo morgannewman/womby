@@ -1,6 +1,7 @@
 import './NotesList.scss'
 import React from 'react'
 import { connect } from 'react-redux'
+import shave from 'shave'
 import NoteCard from './NoteCard'
 
 export class NotesList extends React.Component {

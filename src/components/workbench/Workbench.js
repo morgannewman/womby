@@ -11,8 +11,8 @@ import { Mobile } from '../common/MediaQuery'
 // workbench
 import Sidebar from './sidebar/Sidebar'
 import Editor from './editor/Editor'
-import Toolbar from './menu/Toolbar'
-import MobileMenu from './menu/MobileMenu'
+import Toolbar from './menus/Toolbar'
+import MobileMenu from './menus/MobileMenu'
 
 export class Workbench extends React.Component {
   componentDidMount() {

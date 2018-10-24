@@ -30,10 +30,12 @@ export class Editor extends React.Component {
     }
   }
 
-  handleTitleUpdate = () => {
-    const title = this.titleInput.value
-    this.props.dispatch(updateTitle(this.props.currentNote.id, title))
+  handleTitleUpdate = e => {
+    // TODO: Improve this regex validation to prevent multiple spaces
+    const title = this.titleInput.value.replace(/[\n\r]+/g, '')
+    console.log(title)
     this.setState({ title })
+    this.props.dispatch(updateTitle(this.props.currentNote.id, title))
   }
 
   handleEditorUpdate = ({ value }) => {
