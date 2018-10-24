@@ -1,14 +1,39 @@
+$background: white;
+
 .editor-container {
+  flex-grow: 1;
+  max-width: 80ch;
   height: 100%;
   margin-bottom: 32px;
-  // overflow: scroll;
+  padding: 64px 24px 0 24px;
+  // max-width: 100%;
+  max-width: 80ch;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .editor {
-  min-height: 100%;
-  background-color: #fcf8f2;
+  font-size: 18px;
+  background-color: $background;
   text-align: left;
-  padding: 64px 128px;
-  margin-bottom: 32px;
-  // overflow: scroll;
+}
+
+.editor-title {
+  background-color: $background;
+  padding: 0px 8px 0px 8px;
+  margin-top: 16px;
+  margin-left: -16px;
+  width: 100%;
+  font-size: 1.8em;
+  // Removes default styling
+  border: none;
+  resize: none;
+}
+
+.editor-title:focus {
+  // Adds solid border to lefthand side when clicked
+  border-left: 1px solid black;
+  margin-left: -18px;
+  // Normalizes the editor title region to behave like the main editor
+  outline: 0;
 }

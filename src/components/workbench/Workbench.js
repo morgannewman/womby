@@ -47,12 +47,15 @@ export class Workbench extends React.Component {
               )
             }
           </Mobile>
-          <main className="workbench-editor-container clearfix">
+          <main
+            className="workbench-editor-container"
+            style={this.props.currentNote ? { background: 'white' } : {}}
+          >
             <div className="workbench-editor">
               {this.props.currentNote ? (
                 <Editor initialValue={this.generateEditorValueFromNote()} />
               ) : (
-                <h1 className="workbench-editor-empty">No Note Selected</h1>
+                <h1 className="workbench-editor_empty">No Note Selected</h1>
               )}
             </div>
           </main>
