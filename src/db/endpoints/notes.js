@@ -36,6 +36,23 @@ export const updateDocument = (id, document) => {
     .then(res => res.json())
 }
 
+export const updateTitle = (id, title) => {
+  const authToken = cache.authToken.load()
+  return fetch(`${BASE_URL}/${id}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id,
+      title: title.trim()
+    })
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+}
+
 export const remove = id => {
   const authToken = cache.authToken.load()
   return fetch(`${BASE_URL}/${id}`, {

@@ -1,39 +1,65 @@
 $background: white;
 
 .editor-container {
-  flex-grow: 1;
-  max-width: 80ch;
-  height: 100%;
   margin-bottom: 32px;
   padding: 64px 24px 0 24px;
-  // max-width: 100%;
-  max-width: 80ch;
+  // Ensures editor takes up 100% of remaining space
+  flex-grow: 1;
+  height: 100%;
+  // Centers editor
   margin-right: auto;
   margin-left: auto;
+  // Limits max width of editor to 80ch for readability
+  max-width: 80ch;
 }
 
 .editor {
   font-size: 18px;
+  margin-top: 24px;
   background-color: $background;
   text-align: left;
+  // Ensures editor's clickable field extends far below last text for better UX
+  min-height: 75%;
+}
+
+.editor-title-container {
+  position: relative;
+}
+.editor-title-label {
+  position: absolute;
+  top: -8px;
+  left: -4px;
+  color: gray;
 }
 
 .editor-title {
+  // Removes default styling
+  border: none;
+  resize: none;
+  //
   background-color: $background;
   padding: 0px 8px 0px 8px;
   margin-top: 16px;
   margin-left: -16px;
   width: 100%;
   font-size: 1.8em;
-  // Removes default styling
-  border: none;
-  resize: none;
 }
 
 .editor-title:focus {
-  // Adds solid border to lefthand side when clicked
-  border-left: 1px solid black;
-  margin-left: -18px;
   // Normalizes the editor title region to behave like the main editor
   outline: 0;
+}
+
+.editor-date-container {
+  width: 100%;
+  margin-top: 8px;
+  border-top: 1px solid rgb(211, 211, 211);
+  padding: 8px 0;
+}
+
+.editor-date {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  color: rgb(134, 134, 134);
 }

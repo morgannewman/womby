@@ -3,6 +3,7 @@ import {
   SET_CURRENT_NOTE_SUCCESS,
   SET_CURRENT_NOTE_ERROR,
   OPTIMISTIC_UPDATE_NOTE,
+  OPTIMISTIC_UPDATE_TITLE,
   OPTIMISTIC_DELETE_NOTE,
   NOTE_REQUEST_SEND,
   NOTE_REQUEST_SUCCESS,
@@ -20,6 +21,7 @@ const initialState = {
  * This state is an immutable data structure produced by immer. State should be modified "in place".
  */
 export default produce((state, action) => {
+  let note
   switch (action.type) {
     case SET_CURRENT_NOTE_SUCCESS:
       state.currentNote = action.payload
@@ -30,8 +32,13 @@ export default produce((state, action) => {
       return
 
     case OPTIMISTIC_UPDATE_NOTE:
-      const note = state.notes.find(note => note.id === action.payload.id)
+      note = state.notes.find(note => note.id === action.payload.id)
       note.document = action.payload.document
+      return
+
+    case OPTIMISTIC_UPDATE_TITLE:
+      note = state.notes.find(note => note.id === action.payload.id)
+      note.title = action.payload.title
       return
 
     case OPTIMISTIC_DELETE_NOTE:

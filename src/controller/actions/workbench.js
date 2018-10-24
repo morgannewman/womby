@@ -57,6 +57,27 @@ export const updateNote = (id, document) => (dispatch, getState) => {
     .catch(err => dispatch(updateNoteError()))
 }
 
+export const OPTIMISTIC_UPDATE_TITLE = 'OPTIMISTIC_UPDATE_TITLE'
+export const optimisticallyUpdateTitle = (id, title) => ({
+  type: OPTIMISTIC_UPDATE_TITLE,
+  payload: {
+    id,
+    title
+  }
+})
+
+export const updateTitle = (id, title) => (dispatch, getState) => {
+  // Make change locally
+  dispatch(optimisticallyUpdateTitle(id, title))
+  // Send update to DB
+  dispatch(updateNoteRequest())
+  db.notes
+    .updateTitle(id, title)
+    .then(() => {})
+    // On success, update redux store
+    .catch(err => {})
+}
+
 export const NOTE_REQUEST_SEND = 'NOTE_REQUEST_SEND'
 const noteRequestSend = () => ({
   type: NOTE_REQUEST_SEND

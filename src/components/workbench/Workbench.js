@@ -13,7 +13,6 @@ import Sidebar from './sidebar/Sidebar'
 import Editor from './editor/Editor'
 import Toolbar from './menu/Toolbar'
 import MobileMenu from './menu/MobileMenu'
-import Header from './common/Header'
 
 export class Workbench extends React.Component {
   componentDidMount() {

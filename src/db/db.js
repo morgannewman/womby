@@ -1,6 +1,12 @@
 import { refresh, login } from './endpoints/auth'
 import { register } from './endpoints/users'
-import { get, add, updateDocument, remove } from './endpoints/notes'
+import {
+  get,
+  add,
+  updateDocument,
+  updateTitle,
+  remove
+} from './endpoints/notes'
 
 /**
  * Interface for interacting with the backend/database.
@@ -26,6 +32,7 @@ export const db = {
     get,
     add,
     updateDocument,
+    updateTitle,
     remove
   }
 }
