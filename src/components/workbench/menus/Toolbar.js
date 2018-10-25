@@ -18,6 +18,9 @@ export class Toolbar extends React.Component {
           <button
             className="toolbar-item"
             title="Toggle notebook viewer"
+            aria-label="Toggle notebook viewer"
+            aria-haspopup="true"
+            aria-expanded={this.props.showSidebar}
             onClick={this.handleSidebarToggle}
           >
             <NotebookIcon />
@@ -27,6 +30,7 @@ export class Toolbar extends React.Component {
           <button
             className="toolbar-item"
             title="Toggle settings viewer"
+            aria-label="Toggle settings viewer"
             onClick={this.handleSettingsToggle}
           >
             <CogIcon />

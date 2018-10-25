@@ -1,7 +1,6 @@
 import './NotesList.scss'
 import React from 'react'
 import { connect } from 'react-redux'
-import shave from 'shave'
 import NoteCard from './NoteCard'
 
 export class NotesList extends React.Component {
@@ -13,7 +12,7 @@ export class NotesList extends React.Component {
   }
 
   render() {
-    if (this.props.loading) return <div>Loading...</div>
+    if (this.props.loading) return <h3>Loading...</h3>
     else return <ul className="sidebar-notes">{this.renderNoteCards()}</ul>
   }
 }

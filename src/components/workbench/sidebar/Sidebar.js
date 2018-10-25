@@ -2,13 +2,10 @@ import './Sidebar.scss'
 import React from 'react'
 import NotesList from './NotesList'
 import { connect } from 'react-redux'
-import AddNoteForm from './AddNoteForm'
 import {
   addNewNote,
   toggleSidebar
 } from '../../../controller/actions/workbench'
-import { MdAdd as Plus } from 'react-icons/md'
-import { FaBook as Hide } from 'react-icons/fa'
 
 export class Sidebar extends React.Component {
   state = {
@@ -31,20 +28,12 @@ export class Sidebar extends React.Component {
 
   render() {
     return (
-      <section className="sidebar">
+      <section aria-labelledby="sidebar-title" className={`sidebar ${`sidebar-hidden-${this.props.showSidebar}`}`}>
         <header className="sidebar-header">
-          <h2 className="sidebar-title">Notebook</h2>
-          {/* <button
-            className="sidebar-button"
-            onClick={this.handleAddNoteClick}
-            aria-label="Add new note"
-          >
-            <Plus className="sidebar-button-image" />
-          </button> */}
+          <h2 id="sidebar-title" className="sidebar-title">
+            Notebook
+          </h2>
         </header>
-        {this.state.showAddNoteForm && (
-          <AddNoteForm handleSubmit={this.handleAddNoteSubmit} />
-        )}
         <div className="sidebar-divider" />
         <NotesList />
       </section>

@@ -55,7 +55,9 @@ export class Editor extends React.Component {
   render() {
     return (
       <div className="editor-container">
-        <div className="editor-title-container">
+        {/* TODO: Hide this to be only visible for screen reader users */}
+        {/* <h1 className="screen-reader-only">{this.props.currentNote.title}</h1> */}
+        <form className="editor-title-container">
           {this.state.title.length &&
             this.state.titleFocused && (
               <label className="editor-title-label" htmlFor="editor-title">
@@ -73,7 +75,7 @@ export class Editor extends React.Component {
             onBlur={() => this.setState({ titleFocused: false })}
             onFocus={() => this.setState({ titleFocused: true })}
           />
-        </div>
+        </form>
         <div className="editor-date-container">
           <p className="editor-date">
             Last updated: <time>A few moments ago...</time>
