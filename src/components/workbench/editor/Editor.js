@@ -15,6 +15,13 @@ export class Editor extends React.Component {
     return Value.fromJSON(note.document)
   }
 
+  /**
+   * TODO: Refactor a way to implement this functionality without using this
+   * deprecated lifecycle method
+   * Before mounting, the editor should:
+   * 1. Start the autosave service
+   * 2. Populate local state with augmented values for render() to use
+   */
   componentWillMount() {
     // These convenience methods are used by autosave
     const saveTitle = (id, title) => this.props.dispatch(updateTitle(id, title))
@@ -23,18 +30,40 @@ export class Editor extends React.Component {
     // Bind autosave functionality
     this.autosaveTitle = new Autosaver(saveTitle)
     this.autosaveDocument = new Autosaver(saveDocument)
+    // Populate local state for editor to use
     this.setState({
       value: this.generateEditorValueFromState(),
       title: this.generateTitleForEditor(this.props.currentNote.title)
     })
   }
 
-  componentWillUpdate() {
-    if (this.state.title === 'Untitled note') {
-      return this.setState({ title: '' })
+  /**
+   * After mounting, the editor should:
+   * 1. Focus on the title region if it's an untitled note
+   */
+  componentDidMount() {
+    if (this.props.currentNote.title === 'Untitled note') {
+      this.titleInput.focus()
     }
   }
 
+  /**
+   * Before unmounting, the editor should:
+   * 1. Force the autosave service to save any changes
+   */
+  componentWillUnmount() {
+    console.log('unmounted!')
+    this.autosaveDocument.force()
+    this.autosaveTitle.force()
+  }
+
+  /**
+   * On each update, the component should check to see if the current note
+   * has changed. If so:
+   * 1. Force autosave to save changes
+   * 2. Populate the editor with a new note
+   * 3. Focus on the title region of an untitled note
+   */
   componentDidUpdate(prevProps) {
     // User selects different note
     if (prevProps.currentNote.id !== this.props.currentNote.id) {
@@ -50,7 +79,6 @@ export class Editor extends React.Component {
         () => {
           // When rendering an untitled note, put focus on title region
           if (this.props.currentNote.title === 'Untitled note') {
-            // TODO: Figure out a better solution. Doesn't seem to focus every single time.
             this.titleInput.focus()
           }
         }
@@ -58,15 +86,29 @@ export class Editor extends React.Component {
     }
   }
 
+  /**
+   * On each change to the title input:
+   * 1. Regex to prevent carriage returns and double spaces
+   * 2. If the user deletes all input, set title back to "Untitled note"
+   * 3. Set the local title state in editor
+   * 4. autosave the title
+   */
   handleTitleUpdate = e => {
-    // TODO: Improve this regex validation to prevent multiple spaces
-    let title = this.titleInput.value.replace(/[\n\r]+/g, '')
+    // Is this the most efficient way to remove whitespace AND newlines?
+    let title = this.titleInput.value
+      .replace(/[\n\r]+/g, '')
+      .replace(/[ ]{2,}/g, ' ')
     // Resets title to "Untitled note" when given an empty note
     if (title === '') title = 'Untitled note'
     this.setState({ title: this.generateTitleForEditor(title) })
     this.autosaveTitle.push(this.props.currentNote.id, title)
   }
 
+  /**
+   * On each change to the editor:
+   * 1. Update the local state
+   * 2. If the actual value has changed, autosave
+   */
   handleEditorUpdate = ({ value }) => {
     // Prevents updating DB for non-value state changes (e.g. text selection)
     if (value.document !== this.state.value.document) {
@@ -76,18 +118,10 @@ export class Editor extends React.Component {
     this.setState({ value })
   }
 
-  componentWillUnmount() {
-    console.log('unmounted!')
-    // Save note to DB
-    this.autosaveDocument.force()
-    this.autosaveTitle.force()
-  }
-
   render() {
     return (
       <div className="editor-container">
-        {/* TODO: Hide this to be only visible for screen reader users */}
-        {/* <h1 className="screen-reader-only">{this.props.currentNote.title}</h1> */}
+        <h1 className="screen-reader-only">{this.props.currentNote.title}</h1>
         <form className="editor-title-container">
           {this.state.title.length &&
             this.state.titleFocused && (

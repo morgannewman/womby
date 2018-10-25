@@ -346,6 +346,16 @@ template {
  * USER-DEFINED STYLES
  * */
 
+// see https://webaim.org/techniques/css/invisiblecontent/
+.screen-reader-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .clearfix:after {
   content: '.';
   display: block;
