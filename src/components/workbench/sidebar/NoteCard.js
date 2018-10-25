@@ -1,4 +1,5 @@
 import './NoteCard.scss'
+import { WORKBENCH_ROOT } from '../config'
 // Libraries
 import React from 'react'
 import { parseDate } from '../common/parseDate'
@@ -33,17 +34,16 @@ export class NoteCard extends React.Component {
           this.props.isCurrentNote ? 'sidebar-notes-card-active' : ''
         }`}
       >
-        {/* TODO: Convert back to link */}
-        <button
+        <Link
+          to={`${WORKBENCH_ROOT}/${id}`}
           data-id={id}
-          onClick={this.handleClick}
           className="sidebar-notes-card-text"
         >
           <h3 className="sidebar-notes-card-title js-shave">{title}</h3>
           <time className="sidebar-notes-card-date">
             {parseDate.long(updatedAt)}
           </time>
-        </button>
+        </Link>
         <button
           onClick={this.handleDeleteClick}
           className="sidebar-notes-card-menu"

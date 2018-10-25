@@ -86,7 +86,7 @@ const noteRequestSend = () => ({
 export const NOTE_REQUEST_SUCCESS = 'NOTE_REQUEST_SUCCESS'
 const noteRequestSuccess = notes => ({
   type: NOTE_REQUEST_SUCCESS,
-  notes
+  payload: { notes }
 })
 
 /**
@@ -144,3 +144,13 @@ export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
 export const toggleSidebar = () => ({
   type: TOGGLE_SIDEBAR
 })
+
+export const handleNoteIdRoute = id => (dispatch, getState) => {
+  // Check if note exists in DB
+  const note = getState().workbench.notes.find(note => note.id === id)
+  // If so, set it as the current note
+  if (note) {
+    dispatch(setCurrentNoteSuccess(note))
+  }
+  // TODO: If not, redirect user to the root
+}

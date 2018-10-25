@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Route, withRouter, Switch } from 'react-router-dom'
 import Landing from './landing/Landing'
 import Workbench from './workbench/Workbench'
+import { WORKBENCH_ROOT } from './workbench/config'
 import { refreshAuthToken } from '../controller/actions/auth'
 
 const mapStateToProps = state => ({
@@ -19,7 +20,8 @@ export class App extends React.Component {
     return (
       <div className="app">
         <Switch>
-          <Route path="/home" component={Workbench} />
+          <Route path={`${WORKBENCH_ROOT}/:id`} component={Workbench} />
+          <Route path={WORKBENCH_ROOT} component={Workbench} />
           <Route path="/" component={Landing} />
         </Switch>
       </div>

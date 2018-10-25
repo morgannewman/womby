@@ -1,4 +1,5 @@
 import React from 'react'
+import { WORKBENCH_ROOT } from '../workbench/config'
 import { connect } from 'react-redux'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 import Nav from './Nav'
@@ -14,7 +15,7 @@ export class Landing extends React.Component {
   render() {
     // If we are logged in redirect straight to the user's home
     if (this.props.loggedIn) {
-      return <Redirect to="/home" />
+      return <Redirect to={WORKBENCH_ROOT} />
     }
 
     return (

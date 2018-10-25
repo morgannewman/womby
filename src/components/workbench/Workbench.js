@@ -4,7 +4,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Value } from 'slate'
 // redux
-import { populateNotes } from '../../controller/actions/workbench'
+import {
+  populateNotes,
+  handleNoteIdRoute
+} from '../../controller/actions/workbench'
 // common
 import requiresLogin from '../common/RequiresLogin'
 import { Mobile } from '../common/MediaQuery'
@@ -22,6 +25,29 @@ export class Workbench extends React.Component {
   generateEditorValueFromNote = () => {
     const note = this.props.currentNote
     return Value.fromJSON(note.document)
+  }
+
+  componentDidUpdate(prevProps) {
+    // If there is a note route...
+    if (this.props.match.params.id) {
+      // handle route on first render
+      if (
+        prevProps.isFetchingNotes === true &&
+        this.props.isFetchingNotes === false
+      ) {
+        return this.props.dispatch(
+          handleNoteIdRoute(this.props.match.params.id)
+        )
+      }
+      // Handle subsequent route changes
+      if (this.props.isFetchingNotes === false) {
+        const prevRouteId = prevProps.match.params.id
+        const currentRouteId = this.props.match.params.id
+        if (prevRouteId !== currentRouteId) {
+          this.props.dispatch(handleNoteIdRoute(currentRouteId))
+        }
+      }
+    }
   }
 
   render() {
@@ -66,7 +92,8 @@ export class Workbench extends React.Component {
 
 const mapStateToProps = state => ({
   currentNote: state.workbench.currentNote,
-  showSidebar: state.workbench.showSidebar
+  showSidebar: state.workbench.showSidebar,
+  isFetchingNotes: state.workbench.isFetchingNotes
 })
 
 export default requiresLogin()(connect(mapStateToProps)(Workbench))

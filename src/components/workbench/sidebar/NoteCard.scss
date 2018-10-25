@@ -13,17 +13,24 @@ $card-height: 64px;
 }
 
 .sidebar-notes-card-text {
-  @include button-reset;
   text-align: left;
   padding-left: 8px;
+  padding-top: 8px;
+  text-decoration: none;
   // Contrains clickable area of card to 90%
   flex-basis: 90%;
   max-width: 90%;
 }
 
+.sidebar-notes-card-text:link,
+.sidebar-notes-card-text:visited {
+  color: white;
+}
+
 .sidebar-notes-card-title {
   font-size: 1.1em;
   margin: 0px;
+  padding-bottom: 8px;
   // Prevents text overflow beyond container
   max-width: 100%;
   // Truncates to one line with ellipsis

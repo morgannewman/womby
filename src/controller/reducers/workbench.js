@@ -13,7 +13,7 @@ import {
 const initialState = {
   currentNote: null,
   notes: null,
-  loadingNotes: false,
+  isFetchingNotes: false,
   showSidebar: true
 }
 
@@ -25,10 +25,6 @@ export default produce((state, action) => {
   switch (action.type) {
     case SET_CURRENT_NOTE_SUCCESS:
       state.currentNote = action.payload
-      return
-
-    case NOTE_REQUEST_SEND:
-      state.loadingNotes = true
       return
 
     case OPTIMISTIC_UPDATE_NOTE:
@@ -50,9 +46,18 @@ export default produce((state, action) => {
         state.currentNote.id === action.payload.id ? null : state.currentNote
       return
 
+    // Handles populateNotes() action
+    case NOTE_REQUEST_SEND:
+      state.isFetchingNotes = true
+      return
+
     case NOTE_REQUEST_SUCCESS:
-      state.loadingNotes = false
-      state.notes = action.notes
+      state.isFetchingNotes = false
+      state.notes = action.payload.notes
+      return
+
+    case 'NOTE_REQUEST_ERROR':
+      state.isFetchingNotes = false
       return
 
     case TOGGLE_SIDEBAR:
