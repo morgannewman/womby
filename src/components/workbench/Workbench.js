@@ -14,6 +14,7 @@ import { Mobile } from '../common/MediaQuery'
 // workbench
 import Sidebar from './sidebar/Sidebar'
 import Editor from './editor/Editor'
+import AddNote from './addNote/AddNote'
 import Toolbar from './menus/Toolbar'
 import MobileMenu from './menus/MobileMenu'
 
@@ -72,6 +73,9 @@ export class Workbench extends React.Component {
               )
             }
           </Mobile>
+          <div className="workbench-addNote">
+            <AddNote />
+          </div>
           <main
             className="workbench-editor-container"
             style={this.props.currentNote ? { background: 'white' } : {}}

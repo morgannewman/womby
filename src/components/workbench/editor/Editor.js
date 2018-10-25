@@ -23,17 +23,35 @@ export class Editor extends React.Component {
     // User selects different note
     if (prevProps.currentNote.id !== this.props.currentNote.id) {
       // Populate editor with new note
-      this.setState({
-        value: this.generateEditorValueFromCurrentNote(),
-        title: this.props.currentNote.title
-      })
+      this.setState(
+        {
+          value: this.generateEditorValueFromCurrentNote(),
+          title: this.props.currentNote.title
+        },
+        () => {
+          // When rendering an untitled note, put focus on title region
+          if (this.props.currentNote.title === 'Untitled note') {
+            // TODO: Figure out a better solution. Doesn't seem to focus every single time.
+            this.titleInput.focus()
+          }
+        }
+      )
     }
+  }
+
+  // New notes have a true title of `Untitled note`, so this generates an
+  // empty title area for users to edit
+  getTitle = () => {
+    if (this.state.title === 'Untitled note') {
+      return this.setState({ title: '' })
+    } else return this.state.title
   }
 
   handleTitleUpdate = e => {
     // TODO: Improve this regex validation to prevent multiple spaces
-    const title = this.titleInput.value.replace(/[\n\r]+/g, '')
-    console.log(title)
+    let title = this.titleInput.value.replace(/[\n\r]+/g, '')
+    // Resets title to "Untitled note" when given an empty note
+    if (title === '') title = 'Untitled note'
     this.setState({ title })
     this.props.dispatch(updateTitle(this.props.currentNote.id, title))
   }
@@ -69,7 +87,7 @@ export class Editor extends React.Component {
             id="editor-title"
             placeholder="Title"
             title="title"
-            value={this.state.title}
+            value={this.getTitle()}
             inputRef={title => (this.titleInput = title)}
             onChange={this.handleTitleUpdate}
             onBlur={() => this.setState({ titleFocused: false })}

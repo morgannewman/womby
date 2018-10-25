@@ -132,7 +132,7 @@ export const deleteNote = id => dispatch => {
     .catch(err => dispatch(deleteNoteError()))
 }
 
-export const addNewNote = title => dispatch => {
+export const addNewNote = (title = 'Untitled note') => dispatch => {
   // TODO: Figure out an optimistic way to implement this functionality
   db.notes.add(title).then(note => {
     const id = note.id

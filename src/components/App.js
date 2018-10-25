@@ -20,7 +20,8 @@ export class App extends React.Component {
     return (
       <div className="app">
         <Switch>
-          <Route path={`${WORKBENCH_ROOT}/:id`} component={Workbench} />
+          <Route exact path={`${WORKBENCH_ROOT}/:id`} component={Workbench} />
+          <Route exact path={`${WORKBENCH_ROOT}/new`} component={Workbench} />
           <Route path={WORKBENCH_ROOT} component={Workbench} />
           <Route path="/" component={Landing} />
         </Switch>

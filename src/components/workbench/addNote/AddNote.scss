@@ -1,0 +1,11 @@
+@import '../../../scss/colors';
+
+.addNote-icon {
+  width: 48px;
+  height: 48px;
+  fill: $primary;
+}
+
+.addNote-icon:hover {
+  fill: $primary-focus;
+}
