@@ -5,7 +5,11 @@ import { Editor as Slate } from 'slate-react'
 import { Value } from 'slate'
 import { updateNote, updateTitle } from '../../../controller/actions/workbench'
 import Textarea from 'react-textarea-autosize'
+import Autosaver from './Autosaver'
 
+// TODO: render from router shows `untitled note` in title region
+
+// TODO: Fix autosave to not flush on delete note
 export class Editor extends React.Component {
   generateEditorValueFromCurrentNote = () => {
     const note = this.props.currentNote
@@ -13,6 +17,13 @@ export class Editor extends React.Component {
   }
 
   componentWillMount() {
+    // These convenience methods are used by autosave
+    const saveTitle = (id, title) => this.props.dispatch(updateTitle(id, title))
+    const saveDocument = (id, document) =>
+      this.props.dispatch(updateNote(id, document))
+    // Bind autosave functionality
+    this.autosaveTitle = new Autosaver(saveTitle)
+    this.autosaveDocument = new Autosaver(saveDocument)
     this.setState({
       value: this.generateEditorValueFromCurrentNote(),
       title: this.props.currentNote.title
@@ -20,8 +31,15 @@ export class Editor extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    // TODO: inspect solution: Cannot update state in getter when called during render()
+    if (this.state.title === 'Untitled note') {
+      return this.setState({ title: '' })
+    }
     // User selects different note
     if (prevProps.currentNote.id !== this.props.currentNote.id) {
+      // Save prev note to database
+      this.autosaveDocument.force()
+      this.autosaveTitle.force()
       // Populate editor with new note
       this.setState(
         {
@@ -39,12 +57,9 @@ export class Editor extends React.Component {
     }
   }
 
-  // New notes have a true title of `Untitled note`, so this generates an
-  // empty title area for users to edit
+  // TODO: DELETE?
   getTitle = () => {
-    if (this.state.title === 'Untitled note') {
-      return this.setState({ title: '' })
-    } else return this.state.title
+    return this.state.title
   }
 
   handleTitleUpdate = e => {
@@ -53,14 +68,14 @@ export class Editor extends React.Component {
     // Resets title to "Untitled note" when given an empty note
     if (title === '') title = 'Untitled note'
     this.setState({ title })
-    this.props.dispatch(updateTitle(this.props.currentNote.id, title))
+    this.autosaveTitle.push(this.props.currentNote.id, title)
   }
 
   handleEditorUpdate = ({ value }) => {
     // Prevents updating DB for non-value state changes (e.g. text selection)
     if (value.document !== this.state.value.document) {
       const document = value.toJSON()
-      this.props.dispatch(updateNote(this.props.currentNote.id, document))
+      this.autosaveDocument.push(this.props.currentNote.id, document)
     }
     this.setState({ value })
   }
@@ -68,6 +83,8 @@ export class Editor extends React.Component {
   componentWillUnmount() {
     console.log('unmounted!')
     // Save note to DB
+    this.autosaveDocument.force()
+    this.autosaveTitle.force()
   }
 
   render() {

@@ -21,29 +21,26 @@ const initialState = {
  * This state is an immutable data structure produced by immer. State should be modified "in place".
  */
 export default produce((state, action) => {
-  let note
   switch (action.type) {
     case SET_CURRENT_NOTE_SUCCESS:
       state.currentNote = action.payload
       return
 
     case OPTIMISTIC_UPDATE_NOTE:
-      note = state.notes.find(note => note.id === action.payload.id)
-      note.document = action.payload.document
+      state.notes[action.payload.index].document = action.payload.document
       return
 
     case OPTIMISTIC_UPDATE_TITLE:
-      note = state.notes.find(note => note.id === action.payload.id)
-      note.title = action.payload.title
+      state.notes[action.payload.index].title = action.payload.title
       return
 
     case OPTIMISTIC_DELETE_NOTE:
-      // Delete note from state
-      const index = state.notes.findIndex(note => note.id === action.payload.id)
-      state.notes.splice(index, 1)
       // handle deleting current note
       state.currentNote =
-        state.currentNote.id === action.payload.id ? null : state.currentNote
+        state.currentNote.id === state.notes[action.payload.index].id
+          ? null
+          : state.currentNote
+      state.notes.splice(action.payload.index, 1)
       return
 
     // Handles populateNotes() action

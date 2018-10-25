@@ -37,45 +37,55 @@ export const setCurrentNote = id => (dispatch, getState) => {
 }
 
 export const OPTIMISTIC_UPDATE_NOTE = 'OPTIMISTIC_UPDATE_NOTE'
-export const optimisticallyUpdateNote = (id, document) => ({
+export const optimisticallyUpdateNote = (index, document) => ({
   type: OPTIMISTIC_UPDATE_NOTE,
   payload: {
-    id,
+    index,
     document
   }
 })
 
 export const updateNote = (id, document) => (dispatch, getState) => {
-  // Make change locally
-  dispatch(optimisticallyUpdateNote(id, document))
-  // Send update to DB
-  dispatch(updateNoteRequest())
-  db.notes
-    .updateDocument(id, document)
-    .then(() => dispatch(updateNoteSuccess(id, document)))
-    // On success, update redux store
-    .catch(err => dispatch(updateNoteError()))
+  // Find note index by id
+  const index = getState().workbench.notes.findIndex(note => note.id === id)
+  if (index !== -1) {
+    console.log('updating document!')
+    // Make change locally
+    dispatch(optimisticallyUpdateNote(index, document))
+    // Send update to DB
+    dispatch(updateNoteRequest())
+    db.notes
+      .updateDocument(id, document)
+      .then(() => dispatch(updateNoteSuccess(id, document)))
+      // On success, update redux store
+      .catch(err => dispatch(updateNoteError()))
+  }
 }
 
 export const OPTIMISTIC_UPDATE_TITLE = 'OPTIMISTIC_UPDATE_TITLE'
-export const optimisticallyUpdateTitle = (id, title) => ({
+export const optimisticallyUpdateTitle = (index, title) => ({
   type: OPTIMISTIC_UPDATE_TITLE,
   payload: {
-    id,
+    index,
     title
   }
 })
 
 export const updateTitle = (id, title) => (dispatch, getState) => {
-  // Make change locally
-  dispatch(optimisticallyUpdateTitle(id, title))
-  // Send update to DB
-  dispatch(updateNoteRequest())
-  db.notes
-    .updateTitle(id, title)
-    .then(() => {})
-    // On success, update redux store
-    .catch(err => {})
+  // Find note index by id
+  const index = getState().workbench.notes.findIndex(note => note.id === id)
+  if (index !== -1) {
+    // Update note locally
+    dispatch(optimisticallyUpdateTitle(index, title))
+    // Update note in DB
+    dispatch(updateNoteRequest())
+    console.log('updating title!')
+    db.notes
+      .updateTitle(id, title)
+      .then(() => {})
+      // On success, update redux store
+      .catch(err => {})
+  }
 }
 
 export const NOTE_REQUEST_SEND = 'NOTE_REQUEST_SEND'
@@ -107,9 +117,9 @@ export const populateNotes = () => dispatch => {
   )
 }
 export const OPTIMISTIC_DELETE_NOTE = 'OPTIMISTIC_DELETE_NOTE'
-export const optimisticallyDeleteNote = id => ({
+export const optimisticallyDeleteNote = index => ({
   type: OPTIMISTIC_DELETE_NOTE,
-  payload: { id }
+  payload: { index }
 })
 
 export const DELETE_NOTE_SUCCESS = 'DELETE_NOTE_SUCCESS'
@@ -121,15 +131,18 @@ export const deleteNoteError = () => ({
   type: DELETE_NOTE_ERROR
 })
 
-export const deleteNote = id => dispatch => {
-  console.log('delete action dispatched for', id)
-  // delete note from local state
-  dispatch(optimisticallyDeleteNote(id))
-  // delete note from DB
-  return db.notes
-    .remove(id)
-    .then(() => dispatch(deleteNoteSuccess()))
-    .catch(err => dispatch(deleteNoteError()))
+export const deleteNote = id => (dispatch, getState) => {
+  const index = getState().workbench.notes.findIndex(note => note.id === id)
+  if (index !== -1) {
+    console.log('delete action dispatched for', id)
+    // delete note from local state
+    dispatch(optimisticallyDeleteNote(index))
+    // delete note from DB
+    return db.notes
+      .remove(id)
+      .then(() => dispatch(deleteNoteSuccess()))
+      .catch(err => dispatch(deleteNoteError()))
+  }
 }
 
 export const addNewNote = (title = 'Untitled note') => dispatch => {
