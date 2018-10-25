@@ -7,11 +7,10 @@ import { updateNote, updateTitle } from '../../../controller/actions/workbench'
 import Textarea from 'react-textarea-autosize'
 import Autosaver from './Autosaver'
 
-// TODO: render from router shows `untitled note` in title region
-
-// TODO: Fix autosave to not flush on delete note
 export class Editor extends React.Component {
-  generateEditorValueFromCurrentNote = () => {
+  generateTitleForEditor = title => (title === 'Untitled note' ? '' : title)
+
+  generateEditorValueFromState = () => {
     const note = this.props.currentNote
     return Value.fromJSON(note.document)
   }
@@ -25,16 +24,18 @@ export class Editor extends React.Component {
     this.autosaveTitle = new Autosaver(saveTitle)
     this.autosaveDocument = new Autosaver(saveDocument)
     this.setState({
-      value: this.generateEditorValueFromCurrentNote(),
-      title: this.props.currentNote.title
+      value: this.generateEditorValueFromState(),
+      title: this.generateTitleForEditor(this.props.currentNote.title)
     })
   }
 
-  componentDidUpdate(prevProps) {
-    // TODO: inspect solution: Cannot update state in getter when called during render()
+  componentWillUpdate() {
     if (this.state.title === 'Untitled note') {
       return this.setState({ title: '' })
     }
+  }
+
+  componentDidUpdate(prevProps) {
     // User selects different note
     if (prevProps.currentNote.id !== this.props.currentNote.id) {
       // Save prev note to database
@@ -43,8 +44,8 @@ export class Editor extends React.Component {
       // Populate editor with new note
       this.setState(
         {
-          value: this.generateEditorValueFromCurrentNote(),
-          title: this.props.currentNote.title
+          value: this.generateEditorValueFromState(),
+          title: this.generateTitleForEditor(this.props.currentNote.title)
         },
         () => {
           // When rendering an untitled note, put focus on title region
@@ -57,17 +58,12 @@ export class Editor extends React.Component {
     }
   }
 
-  // TODO: DELETE?
-  getTitle = () => {
-    return this.state.title
-  }
-
   handleTitleUpdate = e => {
     // TODO: Improve this regex validation to prevent multiple spaces
     let title = this.titleInput.value.replace(/[\n\r]+/g, '')
     // Resets title to "Untitled note" when given an empty note
     if (title === '') title = 'Untitled note'
-    this.setState({ title })
+    this.setState({ title: this.generateTitleForEditor(title) })
     this.autosaveTitle.push(this.props.currentNote.id, title)
   }
 
@@ -104,7 +100,7 @@ export class Editor extends React.Component {
             id="editor-title"
             placeholder="Title"
             title="title"
-            value={this.getTitle()}
+            value={this.state.title}
             inputRef={title => (this.titleInput = title)}
             onChange={this.handleTitleUpdate}
             onBlur={() => this.setState({ titleFocused: false })}
