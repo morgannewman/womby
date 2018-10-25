@@ -36,10 +36,12 @@ export default produce((state, action) => {
 
     case OPTIMISTIC_DELETE_NOTE:
       // handle deleting current note
-      state.currentNote =
-        state.currentNote.id === state.notes[action.payload.index].id
-          ? null
-          : state.currentNote
+      if (state.currentNote) {
+        state.currentNote =
+          state.currentNote.id === state.notes[action.payload.index].id
+            ? null
+            : state.currentNote
+      }
       state.notes.splice(action.payload.index, 1)
       return
 
