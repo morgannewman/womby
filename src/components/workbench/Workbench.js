@@ -6,7 +6,8 @@ import { Value } from 'slate'
 // redux
 import {
   populateNotes,
-  handleNoteIdRoute
+  handleNoteIdRoute,
+  setFirstCurrentNote
 } from '../../controller/actions/workbench'
 // common
 import requiresLogin from '../common/RequiresLogin'
@@ -46,6 +47,17 @@ export class Workbench extends React.Component {
         const currentRouteId = this.props.match.params.id
         if (prevRouteId !== currentRouteId) {
           this.props.dispatch(handleNoteIdRoute(currentRouteId))
+        }
+      }
+    }
+    // TODO: Fix this hacky way to put new users directly into a note
+    else {
+      if (
+        prevProps.isFetchingNotes === true &&
+        this.props.isFetchingNotes === false
+      ) {
+        if (this.props.currentNote === null && this.props.notes.length === 1) {
+          this.props.dispatch(setFirstCurrentNote())
         }
       }
     }
@@ -96,6 +108,7 @@ export class Workbench extends React.Component {
 
 const mapStateToProps = state => ({
   currentNote: state.workbench.currentNote,
+  notes: state.workbench.notes,
   showSidebar: state.workbench.showSidebar,
   isFetchingNotes: state.workbench.isFetchingNotes
 })

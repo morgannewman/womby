@@ -2,14 +2,16 @@ import './Toolbar.scss'
 import React from 'react'
 import { connect } from 'react-redux'
 import { toggleSidebar } from '../../../controller/actions/workbench'
-import { FaBook as NotebookIcon, FaCog as CogIcon } from 'react-icons/fa'
+import { logout } from '../../../controller/actions/auth'
+import { FaBook as NotebookIcon } from 'react-icons/fa'
+import { MdPowerSettingsNew as PowerIcon } from 'react-icons/md'
 
 export class Toolbar extends React.Component {
   handleSidebarToggle = () => {
     this.props.dispatch(toggleSidebar())
   }
 
-  handleSettingsToggle = () => {}
+  handleLogoutPress = () => this.props.dispatch(logout())
 
   render() {
     return (
@@ -29,11 +31,11 @@ export class Toolbar extends React.Component {
         <div className="toolbar-container-bottom">
           <button
             className="toolbar-item"
-            title="Toggle settings viewer"
-            aria-label="Toggle settings viewer"
-            onClick={this.handleSettingsToggle}
+            title="Logout"
+            aria-label="Logout"
+            onClick={this.handleLogoutPress}
           >
-            <CogIcon />
+            <PowerIcon />
           </button>
         </div>
       </nav>

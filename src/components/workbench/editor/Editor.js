@@ -11,8 +11,19 @@ import Textarea from 'react-textarea-autosize'
 import Autosaver from './Autosaver'
 
 export class Editor extends React.Component {
+  /**
+   * Creates a valid title for the editor to use. This should only be used
+   * for the component's state.
+   * @param {string} title
+   * @returns {string} returns either the given title or `Untitled note`
+   */
   generateTitleForEditor = title => (title === 'Untitled note' ? '' : title)
 
+  /**
+   * Creates a valid editor value from the currentNote (an object) in state.
+   * This should only be used for the component's state.
+   * @returns {Value} a data structure that the editor consumes to display data.
+   */
   generateEditorValueFromState = () => {
     const note = this.props.currentNote
     return Value.fromJSON(note.document)

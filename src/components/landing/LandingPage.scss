@@ -1,0 +1,56 @@
+@import '../../scss/colors';
+
+.landing-container {
+  color: white;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landing-text-container {
+  width: 100%;
+  padding: 32px 0;
+}
+
+.landing-text {
+  margin: 0;
+  font-size: 1.6em;
+  margin: 0 8px;
+  @media screen and (min-width: 572px) {
+    font-size: 2em;
+  }
+}
+
+.landing-text-link {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 16px;
+  background-color: $primary-cta;
+  font-weight: bold;
+  &:link {
+    color: white;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: white;
+  }
+}
+
+.landing-image-container {
+  margin: 0;
+  max-width: 896px;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landing-image__small,
+.landing-image__large {
+  width: 100%;
+  min-height: 50vh;
+  padding: 0 16px;
+}

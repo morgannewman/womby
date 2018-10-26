@@ -1,23 +1,26 @@
+import './Nav.scss'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { logout } from '../../controller/actions/auth'
 
 export class HeaderBar extends React.Component {
-  handleLogout = () => {
-    this.props.dispatch(logout())
-  }
-
   render() {
-    // Only render the log out button if we are logged in
-    let logOutButton
-    if (this.props.loggedIn) {
-      logOutButton = <button onClick={this.handleLogout}>Log out</button>
-    }
     return (
-      <div className="header-bar">
-        <h1>Womby</h1>
-        {logOutButton}
-      </div>
+      <header className="nav-container">
+        <div className="nav-inner-container">
+          <Link to="/" className="nav-title">
+            Womby
+          </Link>
+          <nav className="nav">
+            <Link to="/login" className="nav-link">
+              Login
+            </Link>
+            <Link className="nav-link" to="/register">
+              Get Started
+            </Link>
+          </nav>
+        </div>
+      </header>
     )
   }
 }

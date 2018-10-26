@@ -1,0 +1,76 @@
+@import '../../scss/colors';
+
+.landing {
+  background: $primary-disabled;
+  font-family: 'Roboto Slab', serif;
+}
+
+.landing-wrapper {
+  position: relative;
+  height: 100%;
+  min-height: 70vh;
+}
+
+.landing a {
+  display: inline-block;
+  padding: 16px;
+  font-weight: bold;
+  &:link {
+    color: white;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: white;
+  }
+}
+
+.landing button {
+  border: none;
+  background: none;
+  background-color: $primary-cta;
+  color: white;
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 16px;
+  font-weight: bold;
+}
+
+.landing form {
+  display: inline-block;
+  padding-top: 16px;
+}
+
+.form-test {
+  // margin-left: auto;
+  // margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing label {
+  font-size: 1.2em;
+  display: inline-block;
+  color: white;
+  text-align: left;
+  padding-top: 16px;
+  padding-bottom: 4px;
+}
+
+.landing-form-title {
+  color: white;
+  padding-top: 16px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.landing-form-redirect {
+  color: white;
+}
+
+.landing-form-redirect-link {
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
+}

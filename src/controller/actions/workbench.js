@@ -28,6 +28,11 @@ export const setCurrentNote = id => (dispatch, getState) => {
   }
 }
 
+export const SET_FIRST_CURRENT_NOTE = 'SET_FIRST_CURRENT_NOTE'
+export const setFirstCurrentNote = () => ({
+  type: SET_FIRST_CURRENT_NOTE
+})
+
 export const addNewNote = (title = 'Untitled note') => dispatch => {
   // TODO: Figure out an optimistic way to implement this functionality
   db.notes.add(title).then(note => {

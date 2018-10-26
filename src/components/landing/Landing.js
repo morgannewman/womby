@@ -1,8 +1,10 @@
+import './Landing.scss'
 import React from 'react'
 import { WORKBENCH_ROOT } from '../workbench/config'
 import { connect } from 'react-redux'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 import Nav from './Nav'
+import Footer from './Footer'
 import LandingPage from './LandingPage'
 import LoginPage from './LoginPage'
 import RegistrationPage from './RegistrationPage'
@@ -20,10 +22,15 @@ export class Landing extends React.Component {
 
     return (
       <React.Fragment>
-        <Nav />
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/register" component={RegistrationPage} />
+        <div className="landing">
+          <Nav />
+          <div className="landing-wrapper">
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/register" component={RegistrationPage} />
+          </div>
+          <Footer />
+        </div>
       </React.Fragment>
     )
   }

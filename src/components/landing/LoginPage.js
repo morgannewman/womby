@@ -5,8 +5,14 @@ import LoginForm from './LoginForm'
 export function LoginPage(props) {
   return (
     <div className="home">
+      <h2 className="landing-form-title">Login to Womby</h2>
       <LoginForm />
-      <Link to="/register">Register</Link>
+      <p className="landing-form-redirect">
+        Don't have an account?
+        <Link className="landing-form-redirect-link" to="/register">
+          Register here.
+        </Link>
+      </p>
     </div>
   )
 }

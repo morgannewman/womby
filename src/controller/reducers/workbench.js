@@ -1,6 +1,7 @@
 import produce from 'immer'
 import {
   SET_CURRENT_NOTE_SUCCESS,
+  SET_FIRST_CURRENT_NOTE,
   // SET_CURRENT_NOTE_ERROR,
   OPTIMISTIC_UPDATE_DOCUMENT,
   OPTIMISTIC_UPDATE_TITLE,
@@ -24,6 +25,10 @@ export default produce((state, action) => {
   switch (action.type) {
     case SET_CURRENT_NOTE_SUCCESS:
       state.currentNote = action.payload
+      return
+
+    case SET_FIRST_CURRENT_NOTE:
+      state.currentNote = state.notes[0]
       return
 
     case OPTIMISTIC_UPDATE_DOCUMENT:
