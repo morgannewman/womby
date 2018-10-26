@@ -2,11 +2,11 @@ import produce from 'immer'
 import {
   SET_CURRENT_NOTE_SUCCESS,
   // SET_CURRENT_NOTE_ERROR,
-  OPTIMISTIC_UPDATE_NOTE,
+  OPTIMISTIC_UPDATE_DOCUMENT,
   OPTIMISTIC_UPDATE_TITLE,
   OPTIMISTIC_DELETE_NOTE,
-  NOTE_REQUEST_SEND,
-  NOTE_REQUEST_SUCCESS,
+  POPULATE_NOTES_REQUEST,
+  POPULATE_NOTES_SUCCESS,
   TOGGLE_SIDEBAR
 } from '../actions/workbench'
 
@@ -26,7 +26,7 @@ export default produce((state, action) => {
       state.currentNote = action.payload
       return
 
-    case OPTIMISTIC_UPDATE_NOTE:
+    case OPTIMISTIC_UPDATE_DOCUMENT:
       state.notes[action.payload.index].document = action.payload.document
       return
 
@@ -46,11 +46,11 @@ export default produce((state, action) => {
       return
 
     // Handles populateNotes() action
-    case NOTE_REQUEST_SEND:
+    case POPULATE_NOTES_REQUEST:
       state.isFetchingNotes = true
       return
 
-    case NOTE_REQUEST_SUCCESS:
+    case POPULATE_NOTES_SUCCESS:
       state.isFetchingNotes = false
       state.notes = action.payload.notes
       return

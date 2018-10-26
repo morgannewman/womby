@@ -17,6 +17,7 @@ export class AddNote extends React.Component {
         to={`${WORKBENCH_ROOT}/new`}
         className="addNote-link"
         title="Add new note"
+        aria-label="Add new note"
         onClick={this.handleClick}
       >
         <AddIcon

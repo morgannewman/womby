@@ -3,7 +3,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Editor as Slate } from 'slate-react'
 import { Value } from 'slate'
-import { updateNote, updateTitle } from '../../../controller/actions/workbench'
+import {
+  updateDocument,
+  updateTitle
+} from '../../../controller/actions/workbench'
 import Textarea from 'react-textarea-autosize'
 import Autosaver from './Autosaver'
 
@@ -26,7 +29,7 @@ export class Editor extends React.Component {
     // These convenience methods are used by autosave
     const saveTitle = (id, title) => this.props.dispatch(updateTitle(id, title))
     const saveDocument = (id, document) =>
-      this.props.dispatch(updateNote(id, document))
+      this.props.dispatch(updateDocument(id, document))
     // Bind autosave functionality
     this.autosaveTitle = new Autosaver(saveTitle)
     this.autosaveDocument = new Autosaver(saveDocument)
