@@ -8,11 +8,13 @@ export class NotesList extends React.Component {
     const { notes } = this.props
     if (notes && notes.length) {
       return notes.map(note => <NoteCard note={note} key={note.id} />)
-    } else return <div>There doesn't seem to be anything here...</div>
+      // TODO: ADD A LOADING STATE
+    } else return <div />
   }
 
   render() {
-    if (this.props.loading) return <h3>Loading...</h3>
+    // TODO ADD A LOADING STATE
+    if (this.props.loading) return <h3 />
     else return <ul className="sidebar-notes">{this.renderNoteCards()}</ul>
   }
 }

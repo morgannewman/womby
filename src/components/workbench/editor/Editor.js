@@ -156,9 +156,9 @@ export class Editor extends React.Component {
           />
         </form>
         <div className="editor-date-container">
-          <p className="editor-date">
+          {/* <p className="editor-date">
             Last updated: <time>A few moments ago...</time>
-          </p>
+          </p> */}
         </div>
         <Slate
           className="editor"
