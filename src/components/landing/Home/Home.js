@@ -21,7 +21,7 @@ export default class Home extends React.Component {
               isSmall ? (
                 <img
                   className="home-image home-image__small"
-                  src={require('../../../resources/large-screenshot.png')}
+                  src={require('../../../resources/small-screenshot.png')}
                   alt="A screenshot of Womby"
                 />
               ) : (
