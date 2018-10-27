@@ -14,7 +14,7 @@ export class NotesList extends React.Component {
 
   render() {
     // TODO ADD A LOADING STATE
-    if (this.props.loading) return <h3 />
+    if (this.props.loading) return <div />
     else return <ul className="sidebar-notes">{this.renderNoteCards()}</ul>
   }
 }

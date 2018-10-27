@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import {
   addNewNote,
   toggleSidebar
-} from '../../../controller/actions/workbench'
+} from '../../../../controller/actions/workbench'
 
 export class Sidebar extends React.Component {
   state = {
@@ -28,7 +28,10 @@ export class Sidebar extends React.Component {
 
   render() {
     return (
-      <section aria-labelledby="sidebar-title" className={`sidebar ${`sidebar-hidden-${this.props.showSidebar}`}`}>
+      <section
+        aria-labelledby="sidebar-title"
+        className={`sidebar ${`sidebar-hidden-${this.props.showSidebar}`}`}
+      >
         <header className="sidebar-header">
           <h2 id="sidebar-title" className="sidebar-title">
             Notebook

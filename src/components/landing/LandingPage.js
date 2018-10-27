@@ -13,8 +13,8 @@ export default class LandingPage extends React.Component {
               <h2 className="landing-text">
                 A delightfully simple notetaking app that saves as you type.
               </h2>
-              <Link className="landing-text-link" to="#">
-                Try a Demo
+              <Link className="landing-text-link" to="/register">
+                Get Started
               </Link>
             </div>
             <div className="landing-image-container">
@@ -23,13 +23,13 @@ export default class LandingPage extends React.Component {
                   isSmall ? (
                     <img
                       className="landing-image landing-image__small"
-                      src={require('./small-screenshot.png')}
+                      src={require('../../resources/large-screenshot.png')}
                       alt="A screenshot of Womby"
                     />
                   ) : (
                     <img
                       className="landing-image landing-image__large"
-                      src={require('./large-screenshot.png')}
+                      src={require('../../resources/large-screenshot.png')}
                       alt="A screenshot of Womby"
                     />
                   )

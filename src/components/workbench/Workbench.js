@@ -13,7 +13,7 @@ import {
 import requiresLogin from '../common/RequiresLogin'
 import { Mobile } from '../common/MediaQuery'
 // workbench
-import Sidebar from './sidebar/Sidebar'
+import Sidebar from './menus/sidebar/Sidebar'
 import Editor from './editor/Editor'
 import AddNote from './addNote/AddNote'
 import Toolbar from './menus/Toolbar'

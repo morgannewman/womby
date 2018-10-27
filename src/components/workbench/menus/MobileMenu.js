@@ -1,6 +1,6 @@
 import './MobileMenu.scss'
 import React from 'react'
-import Sidebar from '../sidebar/Sidebar'
+import Sidebar from '../menus/sidebar/Sidebar'
 import { connect } from 'react-redux'
 import { logout } from '../../../controller/actions/auth'
 import { MdMenu as HamburgerIcon, MdClose as CloseIcon } from 'react-icons/md'

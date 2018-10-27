@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Womby",
+  "name": "Womby | A simple text editor",
   "icons": [
     {
       "src": "favicon.ico",

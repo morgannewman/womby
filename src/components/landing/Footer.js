@@ -1,6 +1,5 @@
 import './Footer.scss'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { FaGithub as GithubIcon } from 'react-icons/fa'
 
 export default function Footer(props) {
@@ -10,6 +9,7 @@ export default function Footer(props) {
         className="landing-footer-link"
         href="https://github.com/morgannewman/womby"
         target="_blank"
+        rel="noopener noreferrer"
       >
         <h2 className="screen-reader-only">View on Github</h2>
         <GithubIcon className="landing-footer-icon" />

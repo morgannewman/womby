@@ -1,15 +1,15 @@
 import './NoteCard.scss'
-import { WORKBENCH_ROOT } from '../config'
+import { WORKBENCH_ROOT } from '../../config'
 // Libraries
 import React from 'react'
-import { parseDate } from '../common/parseDate'
+import { parseDate } from '../../../common/parseDate'
 import { Link } from 'react-router-dom'
 // Redux
 import { connect } from 'react-redux'
 import {
   setCurrentNote,
   deleteNote
-} from '../../../controller/actions/workbench'
+} from '../../../../controller/actions/workbench'
 // Resources
 import { MdClose as Delete } from 'react-icons/md'
 

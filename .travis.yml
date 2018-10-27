@@ -1,14 +1,16 @@
 language: node_js
 node_js: lts/*
 cache:
-  yarn: true
+  npm: true
 install:
-  - yarn install
+  - npm install
 script:
-  - yarn build
-  - yarn test
+  - npm run build
+  - npm test
+before_deploy: 'npm install -g firebase-tools'
 deploy:
   skip_cleanup: true
   provider: firebase
   token:
     secure: VGhpRcPnS3L8owuOuEM0pLYB9LNXJlmo22UuUIrYsctao1KKIhuJuamPxpf9MyIhUzE2LfS29xmJ4RcG60gWZsQvA5GtRwGiqPRlmVOqQ/UKQEq7NGRZcKqasIULVQeV4Jcw06ifihBI/wdVUhpWk1BhX/gCvJi4frdzak41/UlkvcPG8E13rEhRZMvD+EoFmxLz/YdEEFw02eIwxIXzsCD3ugX0K2mbli/HOxBaAid2oyZ9Mqbu+SYaqFn2nWGq6cri5uxsB8xILbeZiIXN03DPPT7Km682tZJApSm/E0z0Q/BMQNRlX9HpiSttjHM+vfxQFQreGTmWk9H1Aljgvs0vD7dFFf28OzHLLhs1tjKDeVZN5SRubIa2CagxvrA/+J+PFsgt3X+UFPrt34NEarO3od06hre9C8q2+dtbgOmn3hNjU3wgE7pBbtlLHJuvdC+RMPLfyQAbgDpw0axjtJJrM9xcce1U9WV0I/+FK2D2ZRYbT7I4bP06WSxHNaa0kKig1r0wOGQQBQcWkeTjyb9BlAVydlTCO+xgqjzhtnYpqpkjguA6QtL6FXpI0Y7YpWGh5XrWl7Y97VmLmsCJHUO1490svtKpzrIbaMvUT4sGtX99hJERYg7c0e1wHtNn9SxLM2Mkc7vnawRZyMBuAV15xUU8vOioMotDbJYxOOk=
+  project: 'womby-staging'
