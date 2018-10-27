@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import RegistrationForm from './RegistrationForm'
 
-export function RegistrationPage(props) {
+export function Registration(props) {
   return (
-    <div className="home">
-      <h2 className="landing-form-title">Register Now to Get Started</h2>
+    <main>
+      <h2 className="landing-form-title">Register Now</h2>
       <RegistrationForm />
       <p className="landing-form-redirect">
         Already have an account?
@@ -13,8 +13,8 @@ export function RegistrationPage(props) {
           Login here.
         </Link>
       </p>
-    </div>
+    </main>
   )
 }
 
-export default RegistrationPage
+export default Registration

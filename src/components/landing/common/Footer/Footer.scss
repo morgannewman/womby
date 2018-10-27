@@ -1,11 +1,11 @@
-@import '../../scss/colors';
+@import '../../../../scss/colors';
 
 .landing-footer {
   width: 100%;
   bottom: 0;
   left: 0;
   right: 0;
-  margin-top: 32px;
+  margin-top: 64px;
   background-color: darken($primary-disabled, 10%);
   float: bottom;
 }

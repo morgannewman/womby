@@ -1,4 +1,4 @@
-@import '../../scss/colors';
+@import '../../../../scss/colors';
 
 .nav-container {
   background-color: $primary;
@@ -27,7 +27,6 @@
 }
 
 .nav-title {
-  color: white;
   display: inline-block;
   font-size: 2em;
   @media screen and (min-width: 420px) {
@@ -36,7 +35,6 @@
 }
 
 .nav a {
-  color: white;
   padding: 16px;
   font-weight: bold;
 

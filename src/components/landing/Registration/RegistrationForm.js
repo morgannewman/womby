@@ -1,14 +1,14 @@
 import React from 'react'
 import { Field, reduxForm, focus } from 'redux-form'
-import { registerUser } from '../../controller/actions/auth'
-import Input from '../common/Input'
+import { registerUser } from '../../../controller/actions/auth'
+import Input from '../../common/Input'
 import {
   required,
   nonEmpty,
   matches,
   length,
   isTrimmed
-} from '../common/validateHelpers'
+} from '../../common/validateHelpers'
 const passwordLength = length({ min: 8, max: 72 })
 const matchesPassword = matches('password')
 

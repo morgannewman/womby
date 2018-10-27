@@ -1,0 +1,41 @@
+@import '../../../scss/colors';
+
+.home {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-cta-container {
+  width: 100%;
+  padding: 32px 0;
+}
+
+.home-cta {
+  margin: 0;
+  font-size: 1.6em;
+  margin: 0 8px;
+  @media screen and (min-width: 572px) {
+    font-size: 2em;
+  }
+}
+
+// inherits from index styles
+.home-cta-button {
+  margin-top: 32px;
+}
+
+.home-image-container {
+  margin: 0;
+  max-width: 896px;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-image__small,
+.home-image__large {
+  width: 100%;
+  min-height: 60vh;
+  padding: 0 16px;
+}

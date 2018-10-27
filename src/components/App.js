@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Route, withRouter, Switch } from 'react-router-dom'
-import Landing from './landing/Landing'
+import Landing from './landing'
 import Workbench from './workbench/Workbench'
 import { WORKBENCH_ROOT } from './workbench/config'
 import { refreshAuthToken } from '../controller/actions/auth'
