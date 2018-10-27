@@ -19,7 +19,7 @@ Data persistence is achieved using a RESTful API built with NodeJS and Express. 
 
 ### Front End
 
-> <img src="src/resources/readme/javascript-original.svg" width="40px"> <img src="src/resources/readme/react.svg" width="40px"> <img src="src/resources/readme/sass.svg" width="40px"> <img src="src/resources/readme/firebase.svg" width="32px"> <img src="src/resources/readme/jest.svg" width="38px"> <img src="src/resources/readme/git.svg" width="40px"> <img src="src/resources/readme/travis-ci.svg" width="40px">
+> <img src="src/resources/readme/js.svg" width="40px"> <img src="src/resources/readme/react.svg" width="40px"> <img src="src/resources/readme/sass.svg" width="40px"> <img src="src/resources/readme/firebase.svg" width="32px"> <img src="src/resources/readme/jest.svg" width="38px"> <img src="src/resources/readme/git.svg" width="40px"> <img src="src/resources/readme/travis-ci.svg" width="40px">
 
 - **JS** / **React** / **Sass**
 - Hosting with **Google Firebase**
