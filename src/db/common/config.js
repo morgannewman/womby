@@ -1,2 +1,2 @@
 export const API_BASE_URL =
-  'https://womby-staging.herokuapp.com/api' || 'http://localhost:8080/api'
+  process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080/api'
