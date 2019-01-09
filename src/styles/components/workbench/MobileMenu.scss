@@ -1,6 +1,3 @@
-@import '../../../scss/button-reset';
-@import '../../../scss/colors';
-
 .mobile-menu-hamburger {
   // SVG offsets hamburger 6px (left/right) x 12px (top/bottom)
   @include button-reset;

@@ -1,4 +1,3 @@
-import './Sidebar.scss';
 import React from 'react';
 import NotesList from './NotesList';
 import { connect } from 'react-redux';
@@ -13,16 +12,16 @@ export class Sidebar extends React.Component {
     value: '',
   };
 
-  handleAddNoteClick = e => {
+  handleAddNoteClick = (e) => {
     this.setState({ showAddNoteForm: !this.state.showAddNoteForm });
   };
 
-  handleAddNoteSubmit = title => {
+  handleAddNoteSubmit = (title) => {
     this.setState({ showAddNoteForm: false });
     this.props.dispatch(addNewNote(title));
   };
 
-  handleSidebarToggle = e => {
+  handleSidebarToggle = (e) => {
     this.props.dispatch(toggleSidebar());
   };
 
@@ -44,7 +43,7 @@ export class Sidebar extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   showSidebar: state.workbench.showSidebar,
 });
 

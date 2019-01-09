@@ -1,4 +1,3 @@
-import './AddNote.scss';
 import { WORKBENCH_ROOT } from '../config';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -29,7 +28,7 @@ export class AddNote extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentNote: state.workbench.currentNote,
 });
 

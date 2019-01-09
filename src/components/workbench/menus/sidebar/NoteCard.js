@@ -1,4 +1,3 @@
-import './NoteCard.scss';
 import { WORKBENCH_ROOT } from '../../config';
 // Libraries
 import React from 'react';
@@ -14,12 +13,12 @@ import {
 import { MdClose as Delete } from 'react-icons/md';
 
 export class NoteCard extends React.Component {
-  handleClick = e => {
+  handleClick = (e) => {
     const { id } = this.props.note;
     this.props.dispatch(setCurrentNote(id));
   };
 
-  handleDeleteClick = e => {
+  handleDeleteClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
     const { id } = this.props.note;
@@ -30,9 +29,9 @@ export class NoteCard extends React.Component {
     const { title, updatedAt, id } = this.props.note;
     return (
       <li
-        className={`sidebar-notes-card ${
-          this.props.isCurrentNote ? 'sidebar-notes-card-active' : ''
-        }`}
+        className={`sidebar-notes-card ${this.props.isCurrentNote
+          ? 'sidebar-notes-card-active'
+          : ''}`}
       >
         <Link
           to={`${WORKBENCH_ROOT}/${id}`}

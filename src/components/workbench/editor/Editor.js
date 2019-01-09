@@ -1,4 +1,3 @@
-import './Editor.scss';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Editor as Slate } from 'slate-react';
@@ -17,7 +16,7 @@ export class Editor extends React.Component {
    * @param {string} title
    * @returns {string} returns either the given title or `Untitled note`
    */
-  generateTitleForEditor = title => (title === 'Untitled note' ? '' : title);
+  generateTitleForEditor = (title) => (title === 'Untitled note' ? '' : title);
 
   /**
    * Creates a valid editor value from the currentNote (an object) in state.
@@ -108,7 +107,7 @@ export class Editor extends React.Component {
    * 3. Set the local title state in editor
    * 4. autosave the title
    */
-  handleTitleUpdate = e => {
+  handleTitleUpdate = (e) => {
     // Is this the most efficient way to remove whitespace AND newlines?
     let title = this.titleInput.value
       .replace(/[\n\r]+/g, '')
@@ -138,7 +137,8 @@ export class Editor extends React.Component {
       <div className="editor-container">
         <h1 className="screen-reader-only">{this.props.currentNote.title}</h1>
         <form className="editor-title-container">
-          {this.state.title.length && this.state.titleFocused && (
+          {this.state.title.length &&
+          this.state.titleFocused && (
             <label className="editor-title-label" htmlFor="editor-title">
               Title
             </label>
@@ -149,7 +149,7 @@ export class Editor extends React.Component {
             placeholder="Title"
             title="title"
             value={this.state.title}
-            inputRef={title => (this.titleInput = title)}
+            inputRef={(title) => (this.titleInput = title)}
             onChange={this.handleTitleUpdate}
             onBlur={() => this.setState({ titleFocused: false })}
             onFocus={() => this.setState({ titleFocused: true })}
@@ -171,7 +171,7 @@ export class Editor extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentNote: state.workbench.currentNote,
 });
 

@@ -1,15 +1,13 @@
-import './index.scss';
 import React from 'react';
 import { WORKBENCH_ROOT } from '../workbench/config';
 import { connect } from 'react-redux';
 import { Route, withRouter, Redirect } from 'react-router-dom';
 import Nav from './common/Nav/Nav';
-import Footer from './common/Footer/Footer';
 import Home from './Home/Home';
 import Login from './Login/Login';
 import Registration from './Registration/Registration';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loggedIn: state.auth.currentUser !== null,
 });
 
@@ -29,7 +27,6 @@ export class Landing extends React.Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Registration} />
           </div>
-          <Footer />
         </div>
       </React.Fragment>
     );

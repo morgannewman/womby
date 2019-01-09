@@ -1,4 +1,3 @@
-import './Workbench.scss';
 // modules
 import React from 'react';
 import { connect } from 'react-redux';
@@ -49,9 +48,8 @@ export class Workbench extends React.Component {
           this.props.dispatch(handleNoteIdRoute(currentRouteId));
         }
       }
-    }
-    // TODO: Fix this hacky way to put new users directly into a note
-    else {
+    } else {
+      // TODO: Fix this hacky way to put new users directly into a note
       if (
         prevProps.isFetchingNotes === true &&
         this.props.isFetchingNotes === false
@@ -68,7 +66,7 @@ export class Workbench extends React.Component {
       <React.Fragment>
         <div className="workbench">
           <Mobile>
-            {matches =>
+            {(matches) =>
               matches ? (
                 <div className="workbench-menu-mobile">
                   <MobileMenu />
@@ -82,8 +80,7 @@ export class Workbench extends React.Component {
                     </div>
                   )}
                 </div>
-              )
-            }
+              )}
           </Mobile>
           <div className="workbench-addNote">
             <AddNote />
@@ -106,7 +103,7 @@ export class Workbench extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentNote: state.workbench.currentNote,
   notes: state.workbench.notes,
   showSidebar: state.workbench.showSidebar,

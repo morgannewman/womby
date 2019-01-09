@@ -1,4 +1,3 @@
-import './MobileMenu.scss';
 import React from 'react';
 import Sidebar from '../menus/sidebar/Sidebar';
 import { connect } from 'react-redux';
@@ -71,7 +70,7 @@ export class MobileMenu extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   hasCurrentNote: state.workbench.currentNote,
 });
 

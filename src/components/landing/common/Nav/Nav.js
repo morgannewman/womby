@@ -1,4 +1,3 @@
-import './Nav.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -25,7 +24,7 @@ export class HeaderBar extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loggedIn: state.auth.currentUser !== null,
 });
 

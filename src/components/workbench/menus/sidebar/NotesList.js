@@ -1,4 +1,3 @@
-import './NotesList.scss';
 import React from 'react';
 import { connect } from 'react-redux';
 import NoteCard from './NoteCard';
@@ -7,7 +6,7 @@ export class NotesList extends React.Component {
   renderNoteCards() {
     const { notes } = this.props;
     if (notes && notes.length) {
-      return notes.map(note => <NoteCard note={note} key={note.id} />);
+      return notes.map((note) => <NoteCard note={note} key={note.id} />);
       // TODO: ADD A LOADING STATE
     } else return <div />;
   }
@@ -19,7 +18,7 @@ export class NotesList extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   notes: state.workbench.notes,
   loading: state.workbench.loadingNotes,
 });

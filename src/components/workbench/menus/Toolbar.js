@@ -1,4 +1,3 @@
-import './Toolbar.scss';
 import React from 'react';
 import { connect } from 'react-redux';
 import { toggleSidebar } from '../../../controller/actions/workbench';
@@ -43,7 +42,7 @@ export class Toolbar extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   showSidebar: state.workbench.showSidebar,
 });
 

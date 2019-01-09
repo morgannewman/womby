@@ -1,4 +1,3 @@
-import './Home.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Media from 'react-media';
@@ -17,7 +16,7 @@ export default class Home extends React.Component {
         </div>
         <div className="home-image-container">
           <Media query={{ maxWidth: 800 }}>
-            {isSmall =>
+            {(isSmall) =>
               isSmall ? (
                 <img
                   className="home-image home-image__small"
@@ -30,8 +29,7 @@ export default class Home extends React.Component {
                   src={require('../../../resources/large-screenshot.png')}
                   alt="A screenshot of Womby"
                 />
-              )
-            }
+              )}
           </Media>
         </div>
       </main>
