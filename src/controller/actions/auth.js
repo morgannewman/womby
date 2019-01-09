@@ -1,10 +1,10 @@
 import jwtDecode from 'jwt-decode';
 import { SubmissionError } from 'redux-form';
-import { cache } from '../../db/cache';
-import { db } from '../../db/db';
+import { cache } from '../db/cache';
+import { db } from '../db/db';
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
-export const setAuthToken = authToken => ({
+export const setAuthToken = (authToken) => ({
   type: SET_AUTH_TOKEN,
   authToken,
 });
@@ -20,13 +20,13 @@ export const authRequest = () => ({
 });
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
-export const authSuccess = currentUser => ({
+export const authSuccess = (currentUser) => ({
   type: AUTH_SUCCESS,
   currentUser,
 });
 
 export const AUTH_ERROR = 'AUTH_ERROR';
-export const authError = error => ({
+export const authError = (error) => ({
   type: AUTH_ERROR,
   error,
 });
@@ -40,12 +40,12 @@ const storeAuthInfo = (authToken, dispatch) => {
   dispatch(authSuccess(decodedToken.user));
 };
 
-export const login = (email, password) => dispatch => {
+export const login = (email, password) => (dispatch) => {
   dispatch(authRequest());
   return db.auth
     .login(email, password)
-    .then(authToken => storeAuthInfo(authToken, dispatch))
-    .catch(err => {
+    .then((authToken) => storeAuthInfo(authToken, dispatch))
+    .catch((err) => {
       const { code } = err;
       const message =
         code === 401
@@ -69,8 +69,8 @@ export const refreshAuthToken = () => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   return db.auth
     .refresh(authToken)
-    .then(authToken => storeAuthInfo(authToken, dispatch))
-    .catch(err => {
+    .then((authToken) => storeAuthInfo(authToken, dispatch))
+    .catch((err) => {
       console.log(err);
       // We couldn't get a refresh token because our current credentials
       // are invalid or expired, or something else went wrong, so clear
@@ -83,17 +83,17 @@ export const refreshAuthToken = () => (dispatch, getState) => {
 /**
  * Clears auth token from both the cache and state.
  */
-export const logout = () => dispatch => {
+export const logout = () => (dispatch) => {
   dispatch(clearAuth());
   cache.authToken.clear();
 };
 
-export const registerUser = user => dispatch => {
+export const registerUser = (user) => (dispatch) => {
   const { email, password } = user;
   return db.users
     .register(user)
     .then(() => dispatch(login(email, password)))
-    .catch(err => {
+    .catch((err) => {
       const { reason, message, location } = err;
       if (reason === 'ValidationError') {
         // Convert ValidationErrors into SubmissionErrors for Redux Form
