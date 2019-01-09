@@ -1,22 +1,22 @@
-import React from 'react'
-import { Field, reduxForm, focus } from 'redux-form'
-import Input from '../../common/Input'
-import { login } from '../../../controller/actions/auth'
-import { required, nonEmpty } from '../../common/validateHelpers'
+import React from 'react';
+import { Field, reduxForm, focus } from 'redux-form';
+import Input from '../../common/Input';
+import { login } from '../../../controller/actions/auth';
+import { required, nonEmpty } from '../../common/validateHelpers';
 
 export class LoginForm extends React.Component {
   onSubmit(values) {
-    return this.props.dispatch(login(values.email, values.password))
+    return this.props.dispatch(login(values.email, values.password));
   }
 
   render() {
-    let error
+    let error;
     if (this.props.error) {
       error = (
         <div className="form-error" aria-live="polite">
           {this.props.error}
         </div>
-      )
+      );
     }
     return (
       <form
@@ -44,11 +44,11 @@ export class LoginForm extends React.Component {
           Log in
         </button>
       </form>
-    )
+    );
   }
 }
 
 export default reduxForm({
   form: 'login',
-  onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'email'))
-})(LoginForm)
+  onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'email')),
+})(LoginForm);

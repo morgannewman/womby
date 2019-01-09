@@ -1,6 +1,6 @@
-import './Footer.scss'
-import React from 'react'
-import { FaGithub as GithubIcon } from 'react-icons/fa'
+import './Footer.scss';
+import React from 'react';
+import { FaGithub as GithubIcon } from 'react-icons/fa';
 
 export default function Footer(props) {
   return (
@@ -15,5 +15,5 @@ export default function Footer(props) {
         <GithubIcon className="landing-footer-icon" />
       </a>
     </footer>
-  )
+  );
 }

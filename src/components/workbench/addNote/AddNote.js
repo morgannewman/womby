@@ -1,15 +1,15 @@
-import './AddNote.scss'
-import { WORKBENCH_ROOT } from '../config'
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { addNewNote } from '../../../controller/actions/workbench'
-import { MdAddCircle as AddIcon } from 'react-icons/md'
+import './AddNote.scss';
+import { WORKBENCH_ROOT } from '../config';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addNewNote } from '../../../controller/actions/workbench';
+import { MdAddCircle as AddIcon } from 'react-icons/md';
 
 export class AddNote extends React.Component {
   handleClick = () => {
-    this.props.dispatch(addNewNote())
-  }
+    this.props.dispatch(addNewNote());
+  };
 
   render() {
     return (
@@ -25,12 +25,12 @@ export class AddNote extends React.Component {
           style={this.props.currentNote ? {} : { fill: 'white' }}
         />
       </Link>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  currentNote: state.workbench.currentNote
-})
+  currentNote: state.workbench.currentNote,
+});
 
-export default connect(mapStateToProps)(AddNote)
+export default connect(mapStateToProps)(AddNote);

@@ -1,30 +1,30 @@
-import './Sidebar.scss'
-import React from 'react'
-import NotesList from './NotesList'
-import { connect } from 'react-redux'
+import './Sidebar.scss';
+import React from 'react';
+import NotesList from './NotesList';
+import { connect } from 'react-redux';
 import {
   addNewNote,
-  toggleSidebar
-} from '../../../../controller/actions/workbench'
+  toggleSidebar,
+} from '../../../../controller/actions/workbench';
 
 export class Sidebar extends React.Component {
   state = {
     showAddNoteForm: false,
-    value: ''
-  }
+    value: '',
+  };
 
   handleAddNoteClick = e => {
-    this.setState({ showAddNoteForm: !this.state.showAddNoteForm })
-  }
+    this.setState({ showAddNoteForm: !this.state.showAddNoteForm });
+  };
 
   handleAddNoteSubmit = title => {
-    this.setState({ showAddNoteForm: false })
-    this.props.dispatch(addNewNote(title))
-  }
+    this.setState({ showAddNoteForm: false });
+    this.props.dispatch(addNewNote(title));
+  };
 
   handleSidebarToggle = e => {
-    this.props.dispatch(toggleSidebar())
-  }
+    this.props.dispatch(toggleSidebar());
+  };
 
   render() {
     return (
@@ -40,12 +40,12 @@ export class Sidebar extends React.Component {
         <div className="sidebar-divider" />
         <NotesList />
       </section>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  showSidebar: state.workbench.showSidebar
-})
+  showSidebar: state.workbench.showSidebar,
+});
 
-export default connect(mapStateToProps)(Sidebar)
+export default connect(mapStateToProps)(Sidebar);

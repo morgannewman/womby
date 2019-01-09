@@ -1,12 +1,12 @@
-import { refresh, login } from './endpoints/auth'
-import { register } from './endpoints/users'
+import { refresh, login } from './endpoints/auth';
+import { register } from './endpoints/users';
 import {
   get,
   add,
   updateDocument,
   updateTitle,
-  remove
-} from './endpoints/notes'
+  remove,
+} from './endpoints/notes';
 
 /**
  * Interface for interacting with the backend/database.
@@ -17,13 +17,13 @@ export const db = {
    */
   auth: {
     refresh,
-    login
+    login,
   },
   /**
    * Interface for the users endpoint. Can be used to create a user. Should be expanded to edit user information, etc.
    */
   users: {
-    register
+    register,
   },
   /**
    * Interface for the notes endpoint.
@@ -33,6 +33,6 @@ export const db = {
     add,
     updateDocument,
     updateTitle,
-    remove
-  }
-}
+    remove,
+  },
+};

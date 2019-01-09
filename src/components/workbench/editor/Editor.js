@@ -1,14 +1,14 @@
-import './Editor.scss'
-import React from 'react'
-import { connect } from 'react-redux'
-import { Editor as Slate } from 'slate-react'
-import { Value } from 'slate'
+import './Editor.scss';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Editor as Slate } from 'slate-react';
+import { Value } from 'slate';
 import {
   updateDocument,
-  updateTitle
-} from '../../../controller/actions/workbench'
-import Textarea from 'react-textarea-autosize'
-import Autosaver from './Autosaver'
+  updateTitle,
+} from '../../../controller/actions/workbench';
+import Textarea from 'react-textarea-autosize';
+import Autosaver from './Autosaver';
 
 export class Editor extends React.Component {
   /**
@@ -17,7 +17,7 @@ export class Editor extends React.Component {
    * @param {string} title
    * @returns {string} returns either the given title or `Untitled note`
    */
-  generateTitleForEditor = title => (title === 'Untitled note' ? '' : title)
+  generateTitleForEditor = title => (title === 'Untitled note' ? '' : title);
 
   /**
    * Creates a valid editor value from the currentNote (an object) in state.
@@ -25,9 +25,9 @@ export class Editor extends React.Component {
    * @returns {Value} a data structure that the editor consumes to display data.
    */
   generateEditorValueFromState = () => {
-    const note = this.props.currentNote
-    return Value.fromJSON(note.document)
-  }
+    const note = this.props.currentNote;
+    return Value.fromJSON(note.document);
+  };
 
   /**
    * TODO: Refactor a way to implement this functionality without using this
@@ -38,17 +38,18 @@ export class Editor extends React.Component {
    */
   componentWillMount() {
     // These convenience methods are used by autosave
-    const saveTitle = (id, title) => this.props.dispatch(updateTitle(id, title))
+    const saveTitle = (id, title) =>
+      this.props.dispatch(updateTitle(id, title));
     const saveDocument = (id, document) =>
-      this.props.dispatch(updateDocument(id, document))
+      this.props.dispatch(updateDocument(id, document));
     // Bind autosave functionality
-    this.autosaveTitle = new Autosaver(saveTitle)
-    this.autosaveDocument = new Autosaver(saveDocument)
+    this.autosaveTitle = new Autosaver(saveTitle);
+    this.autosaveDocument = new Autosaver(saveDocument);
     // Populate local state for editor to use
     this.setState({
       value: this.generateEditorValueFromState(),
-      title: this.generateTitleForEditor(this.props.currentNote.title)
-    })
+      title: this.generateTitleForEditor(this.props.currentNote.title),
+    });
   }
 
   /**
@@ -57,7 +58,7 @@ export class Editor extends React.Component {
    */
   componentDidMount() {
     if (this.props.currentNote.title === 'Untitled note') {
-      this.titleInput.focus()
+      this.titleInput.focus();
     }
   }
 
@@ -66,9 +67,9 @@ export class Editor extends React.Component {
    * 1. Force the autosave service to save any changes
    */
   componentWillUnmount() {
-    console.log('unmounted!')
-    this.autosaveDocument.force()
-    this.autosaveTitle.force()
+    console.log('unmounted!');
+    this.autosaveDocument.force();
+    this.autosaveTitle.force();
   }
 
   /**
@@ -82,21 +83,21 @@ export class Editor extends React.Component {
     // User selects different note
     if (prevProps.currentNote.id !== this.props.currentNote.id) {
       // Save prev note to database
-      this.autosaveDocument.force()
-      this.autosaveTitle.force()
+      this.autosaveDocument.force();
+      this.autosaveTitle.force();
       // Populate editor with new note
       this.setState(
         {
           value: this.generateEditorValueFromState(),
-          title: this.generateTitleForEditor(this.props.currentNote.title)
+          title: this.generateTitleForEditor(this.props.currentNote.title),
         },
         () => {
           // When rendering an untitled note, put focus on title region
           if (this.props.currentNote.title === 'Untitled note') {
-            this.titleInput.focus()
+            this.titleInput.focus();
           }
         }
-      )
+      );
     }
   }
 
@@ -111,12 +112,12 @@ export class Editor extends React.Component {
     // Is this the most efficient way to remove whitespace AND newlines?
     let title = this.titleInput.value
       .replace(/[\n\r]+/g, '')
-      .replace(/[ ]{2,}/g, ' ')
+      .replace(/[ ]{2,}/g, ' ');
     // Resets title to "Untitled note" when given an empty note
-    if (title === '') title = 'Untitled note'
-    this.setState({ title: this.generateTitleForEditor(title) })
-    this.autosaveTitle.push(this.props.currentNote.id, title)
-  }
+    if (title === '') title = 'Untitled note';
+    this.setState({ title: this.generateTitleForEditor(title) });
+    this.autosaveTitle.push(this.props.currentNote.id, title);
+  };
 
   /**
    * On each change to the editor:
@@ -126,23 +127,22 @@ export class Editor extends React.Component {
   handleEditorUpdate = ({ value }) => {
     // Prevents updating DB for non-value state changes (e.g. text selection)
     if (value.document !== this.state.value.document) {
-      const document = value.toJSON()
-      this.autosaveDocument.push(this.props.currentNote.id, document)
+      const document = value.toJSON();
+      this.autosaveDocument.push(this.props.currentNote.id, document);
     }
-    this.setState({ value })
-  }
+    this.setState({ value });
+  };
 
   render() {
     return (
       <div className="editor-container">
         <h1 className="screen-reader-only">{this.props.currentNote.title}</h1>
         <form className="editor-title-container">
-          {this.state.title.length &&
-            this.state.titleFocused && (
-              <label className="editor-title-label" htmlFor="editor-title">
-                Title
-              </label>
-            )}
+          {this.state.title.length && this.state.titleFocused && (
+            <label className="editor-title-label" htmlFor="editor-title">
+              Title
+            </label>
+          )}
           <Textarea
             className="editor-title"
             id="editor-title"
@@ -167,12 +167,12 @@ export class Editor extends React.Component {
           key={this.props.currentNote.id}
         />
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  currentNote: state.workbench.currentNote
-})
+  currentNote: state.workbench.currentNote,
+});
 
-export default connect(mapStateToProps)(Editor)
+export default connect(mapStateToProps)(Editor);

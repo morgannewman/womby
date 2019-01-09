@@ -1,7 +1,7 @@
-import './Home.scss'
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Media from 'react-media'
+import './Home.scss';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Media from 'react-media';
 
 export default class Home extends React.Component {
   render() {
@@ -35,6 +35,6 @@ export default class Home extends React.Component {
           </Media>
         </div>
       </main>
-    )
+    );
   }
 }

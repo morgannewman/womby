@@ -9,7 +9,7 @@ const authToken = {
    */
   save(authToken) {
     try {
-      localStorage.setItem('authToken', authToken)
+      localStorage.setItem('authToken', authToken);
     } catch (e) {}
   },
   /**
@@ -17,7 +17,7 @@ const authToken = {
    */
   clear() {
     try {
-      localStorage.removeItem('authToken')
+      localStorage.removeItem('authToken');
     } catch (e) {}
   },
   /**
@@ -25,10 +25,10 @@ const authToken = {
    * @returns A string or undefined depending on if a token exists in cache.
    */
   load() {
-    return localStorage.getItem('authToken')
-  }
-}
+    return localStorage.getItem('authToken');
+  },
+};
 
 export const cache = {
-  authToken
-}
+  authToken,
+};

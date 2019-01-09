@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 export default class AddNotesForm extends React.Component {
   onSubmit = e => {
-    e.preventDefault()
-    this.props.handleSubmit(this.input.value)
-    this.input.value = ''
-  }
+    e.preventDefault();
+    this.props.handleSubmit(this.input.value);
+    this.input.value = '';
+  };
 
   render() {
     return (
@@ -16,6 +16,6 @@ export default class AddNotesForm extends React.Component {
         </label>
         <button type="submit">Submit</button>
       </form>
-    )
+    );
   }
 }

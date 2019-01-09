@@ -1,7 +1,7 @@
-import './Nav.scss'
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import './Nav.scss';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 export class HeaderBar extends React.Component {
   render() {
@@ -21,12 +21,12 @@ export class HeaderBar extends React.Component {
           </nav>
         </div>
       </header>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  loggedIn: state.auth.currentUser !== null
-})
+  loggedIn: state.auth.currentUser !== null,
+});
 
-export default connect(mapStateToProps)(HeaderBar)
+export default connect(mapStateToProps)(HeaderBar);

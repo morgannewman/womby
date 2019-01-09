@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import RegistrationForm from './RegistrationForm'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import RegistrationForm from './RegistrationForm';
 
 export function Registration(props) {
   return (
@@ -14,7 +14,7 @@ export function Registration(props) {
         </Link>
       </p>
     </main>
-  )
+  );
 }
 
-export default Registration
+export default Registration;

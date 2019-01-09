@@ -1,33 +1,33 @@
-import './Workbench.scss'
+import './Workbench.scss';
 // modules
-import React from 'react'
-import { connect } from 'react-redux'
-import { Value } from 'slate'
+import React from 'react';
+import { connect } from 'react-redux';
+import { Value } from 'slate';
 // redux
 import {
   populateNotes,
   handleNoteIdRoute,
-  setFirstCurrentNote
-} from '../../controller/actions/workbench'
+  setFirstCurrentNote,
+} from '../../controller/actions/workbench';
 // common
-import requiresLogin from '../common/RequiresLogin'
-import { Mobile } from '../common/MediaQuery'
+import requiresLogin from '../common/RequiresLogin';
+import { Mobile } from '../common/MediaQuery';
 // workbench
-import Sidebar from './menus/sidebar/Sidebar'
-import Editor from './editor/Editor'
-import AddNote from './addNote/AddNote'
-import Toolbar from './menus/Toolbar'
-import MobileMenu from './menus/MobileMenu'
+import Sidebar from './menus/sidebar/Sidebar';
+import Editor from './editor/Editor';
+import AddNote from './addNote/AddNote';
+import Toolbar from './menus/Toolbar';
+import MobileMenu from './menus/MobileMenu';
 
 export class Workbench extends React.Component {
   componentDidMount() {
-    this.props.dispatch(populateNotes())
+    this.props.dispatch(populateNotes());
   }
 
   generateEditorValueFromNote = () => {
-    const note = this.props.currentNote
-    return Value.fromJSON(note.document)
-  }
+    const note = this.props.currentNote;
+    return Value.fromJSON(note.document);
+  };
 
   componentDidUpdate(prevProps) {
     // If there is a note route...
@@ -39,14 +39,14 @@ export class Workbench extends React.Component {
       ) {
         return this.props.dispatch(
           handleNoteIdRoute(this.props.match.params.id)
-        )
+        );
       }
       // Handle subsequent route changes
       if (this.props.isFetchingNotes === false) {
-        const prevRouteId = prevProps.match.params.id
-        const currentRouteId = this.props.match.params.id
+        const prevRouteId = prevProps.match.params.id;
+        const currentRouteId = this.props.match.params.id;
         if (prevRouteId !== currentRouteId) {
-          this.props.dispatch(handleNoteIdRoute(currentRouteId))
+          this.props.dispatch(handleNoteIdRoute(currentRouteId));
         }
       }
     }
@@ -57,7 +57,7 @@ export class Workbench extends React.Component {
         this.props.isFetchingNotes === false
       ) {
         if (this.props.currentNote === null && this.props.notes.length === 1) {
-          this.props.dispatch(setFirstCurrentNote())
+          this.props.dispatch(setFirstCurrentNote());
         }
       }
     }
@@ -102,7 +102,7 @@ export class Workbench extends React.Component {
           </main>
         </div>
       </React.Fragment>
-    )
+    );
   }
 }
 
@@ -110,7 +110,7 @@ const mapStateToProps = state => ({
   currentNote: state.workbench.currentNote,
   notes: state.workbench.notes,
   showSidebar: state.workbench.showSidebar,
-  isFetchingNotes: state.workbench.isFetchingNotes
-})
+  isFetchingNotes: state.workbench.isFetchingNotes,
+});
 
-export default requiresLogin()(connect(mapStateToProps)(Workbench))
+export default requiresLogin()(connect(mapStateToProps)(Workbench));

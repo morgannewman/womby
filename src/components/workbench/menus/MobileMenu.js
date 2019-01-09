@@ -1,33 +1,33 @@
-import './MobileMenu.scss'
-import React from 'react'
-import Sidebar from '../menus/sidebar/Sidebar'
-import { connect } from 'react-redux'
-import { logout } from '../../../controller/actions/auth'
-import { MdMenu as HamburgerIcon, MdClose as CloseIcon } from 'react-icons/md'
+import './MobileMenu.scss';
+import React from 'react';
+import Sidebar from '../menus/sidebar/Sidebar';
+import { connect } from 'react-redux';
+import { logout } from '../../../controller/actions/auth';
+import { MdMenu as HamburgerIcon, MdClose as CloseIcon } from 'react-icons/md';
 
 const baseStyle = {
-  fontSize: '3em'
-}
+  fontSize: '3em',
+};
 
 const lightStyle = {
   ...baseStyle,
-  color: 'white'
-}
+  color: 'white',
+};
 
 const darkStyle = {
   ...baseStyle,
-  color: '#5a70e7'
-}
+  color: '#5a70e7',
+};
 
 export class MobileMenu extends React.Component {
   state = {
-    isOpen: false
-  }
+    isOpen: false,
+  };
 
-  handleLogout = () => this.props.dispatch(logout())
+  handleLogout = () => this.props.dispatch(logout());
 
-  openDrawer = () => this.setState({ isOpen: true })
-  closeDrawer = () => this.setState({ isOpen: false })
+  openDrawer = () => this.setState({ isOpen: true });
+  closeDrawer = () => this.setState({ isOpen: false });
 
   render() {
     if (this.state.isOpen)
@@ -53,7 +53,7 @@ export class MobileMenu extends React.Component {
             </button>
           </div>
         </div>
-      )
+      );
     else
       return (
         <nav>
@@ -67,12 +67,12 @@ export class MobileMenu extends React.Component {
             />
           </button>
         </nav>
-      )
+      );
   }
 }
 
 const mapStateToProps = state => ({
-  hasCurrentNote: state.workbench.currentNote
-})
+  hasCurrentNote: state.workbench.currentNote,
+});
 
-export default connect(mapStateToProps)(MobileMenu)
+export default connect(mapStateToProps)(MobileMenu);

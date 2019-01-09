@@ -1,4 +1,4 @@
-import fecha from 'fecha'
+import fecha from 'fecha';
 // const fecha = require('fecha');
 
 /**
@@ -11,20 +11,20 @@ const parser = (format = null) => gmtString => {
   // https://github.com/taylorhakes/fecha
   switch (format.toLowerCase()) {
     default:
-      format = 'dddd MMMM Do, YYYY'
-      break
+      format = 'dddd MMMM Do, YYYY';
+      break;
     case 'long':
-      format = 'dddd, MMMM Do, YYYY'
-      break
+      format = 'dddd, MMMM Do, YYYY';
+      break;
     case 'short':
-      format = 'M/D/YY'
-      break
+      format = 'M/D/YY';
+      break;
   }
   // Localize time
-  const date = new Date(gmtString)
+  const date = new Date(gmtString);
   // Format date based on config
-  return fecha.format(date, format)
-}
+  return fecha.format(date, format);
+};
 
 /**
  * An interface to localize and parse GMT time strings
@@ -41,8 +41,8 @@ export const parseDate = {
    * @param {String} gmtString - a GMT date string
    * @returns {String} date - a formatted date
    */
-  short: parser('short')
-}
+  short: parser('short'),
+};
 
 // const MOCK_DATA = '2018-10-17T14:37:09.142Z';
 // console.log(parseTime.short(MOCK_DATA));

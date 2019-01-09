@@ -1,23 +1,23 @@
-import React from 'react'
-import { Field, reduxForm, focus } from 'redux-form'
-import { registerUser } from '../../../controller/actions/auth'
-import Input from '../../common/Input'
+import React from 'react';
+import { Field, reduxForm, focus } from 'redux-form';
+import { registerUser } from '../../../controller/actions/auth';
+import Input from '../../common/Input';
 import {
   required,
   nonEmpty,
   matches,
   length,
-  isTrimmed
-} from '../../common/validateHelpers'
-const passwordLength = length({ min: 8, max: 72 })
-const matchesPassword = matches('password')
+  isTrimmed,
+} from '../../common/validateHelpers';
+const passwordLength = length({ min: 8, max: 72 });
+const matchesPassword = matches('password');
 
 export class RegistrationForm extends React.Component {
   onSubmit = values => {
-    const { email, password, firstName, lastName } = values
-    const user = { email, password, firstName, lastName }
-    return this.props.dispatch(registerUser(user))
-  }
+    const { email, password, firstName, lastName } = values;
+    const user = { email, password, firstName, lastName };
+    return this.props.dispatch(registerUser(user));
+  };
 
   render() {
     return (
@@ -57,12 +57,12 @@ export class RegistrationForm extends React.Component {
           Register
         </button>
       </form>
-    )
+    );
   }
 }
 
 export default reduxForm({
   form: 'registration',
   onSubmitFail: (errors, dispatch) =>
-    dispatch(focus('registration', Object.keys(errors)[0]))
-})(RegistrationForm)
+    dispatch(focus('registration', Object.keys(errors)[0])),
+})(RegistrationForm);

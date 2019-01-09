@@ -1,33 +1,33 @@
-import './NoteCard.scss'
-import { WORKBENCH_ROOT } from '../../config'
+import './NoteCard.scss';
+import { WORKBENCH_ROOT } from '../../config';
 // Libraries
-import React from 'react'
-import { parseDate } from '../../../common/parseDate'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { parseDate } from '../../../common/parseDate';
+import { Link } from 'react-router-dom';
 // Redux
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import {
   setCurrentNote,
-  deleteNote
-} from '../../../../controller/actions/workbench'
+  deleteNote,
+} from '../../../../controller/actions/workbench';
 // Resources
-import { MdClose as Delete } from 'react-icons/md'
+import { MdClose as Delete } from 'react-icons/md';
 
 export class NoteCard extends React.Component {
   handleClick = e => {
-    const { id } = this.props.note
-    this.props.dispatch(setCurrentNote(id))
-  }
+    const { id } = this.props.note;
+    this.props.dispatch(setCurrentNote(id));
+  };
 
   handleDeleteClick = e => {
-    e.preventDefault()
-    e.stopPropagation()
-    const { id } = this.props.note
-    this.props.dispatch(deleteNote(id))
-  }
+    e.preventDefault();
+    e.stopPropagation();
+    const { id } = this.props.note;
+    this.props.dispatch(deleteNote(id));
+  };
 
   render() {
-    const { title, updatedAt, id } = this.props.note
+    const { title, updatedAt, id } = this.props.note;
     return (
       <li
         className={`sidebar-notes-card ${
@@ -52,14 +52,14 @@ export class NoteCard extends React.Component {
           <Delete />
         </button>
       </li>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state, props) => ({
   isCurrentNote: state.workbench.currentNote
     ? state.workbench.currentNote.id === props.note.id
-    : false
-})
+    : false,
+});
 
-export default connect(mapStateToProps)(NoteCard)
+export default connect(mapStateToProps)(NoteCard);
