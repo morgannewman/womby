@@ -29,12 +29,25 @@
     "slate-react": "^0.19.8"
   },
   "devDependencies": {
+    "@types/jest": "^23.3.12",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "@types/react-redux": "^6.0.12",
+    "@types/react-router-dom": "^4.3.1",
+    "@types/redux-form": "^7.4.15",
+    "@types/slate": "^0.43.8",
+    "@types/slate-react": "^0.20.3",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "node-sass": "^4.11.0",
     "prettier": "^1.15.3",
     "react-icons": "^3.2.2",
-    "react-test-renderer": "^16.7.0"
+    "react-test-renderer": "^16.7.0",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.3.0-dev.20190108"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,5 +55,10 @@
   "prettier": {
     "singleQuote": true
   },
-  "browserslist": [ ">0.2%", "not dead", "not ie <= 11", "not op_mini all" ]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
