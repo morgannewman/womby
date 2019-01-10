@@ -1,0 +1,55 @@
+$card-height: 64px;
+
+.sidebar-notes-card {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid $primary-contrast-1;
+  width: 100%;
+  display: flex;
+  height: $card-height;
+}
+
+.sidebar-notes-card-text {
+  text-align: left;
+  padding-left: 8px;
+  padding-top: 8px;
+  text-decoration: none;
+  // Contrains clickable area of card to 90%
+  flex-basis: 90%;
+  max-width: 90%;
+}
+
+.sidebar-notes-card-text:link,
+.sidebar-notes-card-text:visited {
+  color: white;
+}
+
+.sidebar-notes-card-title {
+  font-size: 1.1em;
+  margin: 0px;
+  padding-bottom: 8px;
+  // Prevents text overflow beyond container
+  max-width: 100%;
+  // Truncates to one line with ellipsis
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar-notes-card-date {
+  display: flex;
+  align-self: flex-end;
+}
+
+.sidebar-notes-card-menu {
+  @include button-reset;
+  height: 100%;
+  flex-basis: 10%;
+}
+
+.sidebar-notes-card-active {
+  background-color: $primary-contrast-2;
+  &:focus-within {
+    background-color: $primary-focus;
+  }
+}

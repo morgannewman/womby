@@ -1,0 +1,52 @@
+.sidebar {
+  background-color: $primary-complement;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+  // Hides visible scrollbar
+  -ms-overflow-style: none; // IE 10+
+  &::-webkit-scrollbar {
+    width: 0px; /* remove scrollbar space */
+    background: transparent; /* optional: just make scrollbar invisible */
+  }
+  // Constrains sidebar width for large layout ONLY
+  @media only screen and (min-width: 900px) {
+    width: 320px;
+  }
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: center;
+  padding: 0 16px;
+  text-align: center;
+}
+
+.sidebar-button {
+  @include button-reset;
+  color: white;
+}
+
+.sidebar-button-image {
+  vertical-align: middle;
+  font-size: 2em;
+}
+
+.sidebar-button-image:hover,
+.sidebar-button-image:active {
+  // TODO: Add hover effect
+}
+
+.sidebar-title {
+  color: white;
+  font-size: 1.8em;
+}
+
+.sidebar-divider {
+  width: 100%;
+  border-bottom: 1px solid $primary-contrast-1;
+}
+
+.sidebar ul {
+  margin: 0;
+}

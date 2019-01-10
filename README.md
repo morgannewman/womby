@@ -19,7 +19,7 @@ Data persistence is achieved using a RESTful API built with NodeJS and Express. 
 
 ### Front End
 
-> <img src="src/resources/readme/js.svg" width="40px"> <img src="src/resources/readme/react.svg" width="40px"> <img src="src/resources/readme/sass.svg" width="40px"> <img src="src/resources/readme/firebase.svg" width="32px"> <img src="src/resources/readme/jest.svg" width="38px"> <img src="src/resources/readme/git.svg" width="40px"> <img src="src/resources/readme/travis-ci.svg" width="40px">
+> <img src="src/assets/readme/js.svg" width="40px"> <img src="src/assets/readme/react.svg" width="40px"> <img src="src/assets/readme/sass.svg" width="40px"> <img src="src/assets/readme/firebase.svg" width="32px"> <img src="src/assets/readme/jest.svg" width="38px"> <img src="src/assets/readme/git.svg" width="40px"> <img src="src/assets/readme/travis-ci.svg" width="40px">
 
 - **JS** / **React** / **Sass**
 - Hosting with **Google Firebase**
@@ -29,7 +29,7 @@ Data persistence is achieved using a RESTful API built with NodeJS and Express. 
 
 ### Back End
 
-> <img src="src/resources/readme/node.svg" width="40px"> <img src="src/resources/readme/express.svg" width="40px"> <img src="src/resources/readme/passport.svg" width="32px"> <img src="src/resources/readme/mocha.svg" width="40px"> <img src="src/resources/readme/heroku.svg" width="40px"> <img src="src/resources/readme/git.svg" width="40px"> <img src="src/resources/readme/travis-ci.svg" width="40px">
+> <img src="src/assets/readme/node.svg" width="40px"> <img src="src/assets/readme/express.svg" width="40px"> <img src="src/assets/readme/passport.svg" width="32px"> <img src="src/assets/readme/mocha.svg" width="40px"> <img src="src/assets/readme/heroku.svg" width="40px"> <img src="src/assets/readme/git.svg" width="40px"> <img src="src/assets/readme/travis-ci.svg" width="40px">
 
 - **NodeJS** for runtime environment
 - **Express** for the HTTP server layer

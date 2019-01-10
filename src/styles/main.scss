@@ -1,0 +1,26 @@
+// Vendor
+@import './normalize';
+// Globals
+@import './colors';
+@import './mixins';
+@import './base';
+
+/**
+ * Components
+*/
+
+// Landing
+@import './components/landing/Landing';
+@import './components/landing/Home';
+@import './components/landing/Nav';
+
+// Workbench
+@import './components/workbench/Workbench';
+@import './components/workbench/Editor';
+@import './components/workbench/Toolbar';
+@import './components/workbench/MobileMenu';
+@import './components/workbench/AddNote';
+// -> sidebar
+@import './components/workbench/sidebar/Sidebar';
+@import './components/workbench/sidebar/NoteCard';
+@import './components/workbench/sidebar/NotesList';

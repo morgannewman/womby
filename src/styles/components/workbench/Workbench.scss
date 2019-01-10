@@ -1,0 +1,62 @@
+/**
+ * THIS FILE DEFINES THE LAYOUT OF THE WORKBENCH AREA 
+ */
+
+.workbench {
+  display: flex;
+  // Ensures workbench always takes up 100% of viewport
+  height: 100vh;
+  width: 100%;
+  // Prevents resize below usable levels
+  min-width: 320px;
+  position: relative;
+}
+
+.workbench-menu-toolbar {
+  background-color: $primary-contrast-3;
+  display: flex;
+  height: 100%;
+  // Prevents toolbar from growing beyond its actual size
+  flex-grow: 0;
+}
+
+// Because this wraps the hamburger button, positioning cannot be changed here
+.workbench-menu-mobile {
+  // MUST take this element out of page flow
+  position: absolute;
+  z-index: 1;
+}
+
+.workbench-editor-container {
+  background-color: $primary-contrast-1;
+  // Makes long notes scrollable
+  overflow-y: scroll;
+  overflow-x: hidden;
+  // Ensures container takes up 100% of remaining space after sidebar
+  height: 100%;
+  flex-grow: 1;
+}
+
+.workbench-editor_empty {
+  color: $primary-disabled;
+  font-size: 2.4rem;
+  // Centers empty state text
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.workbench-editor {
+  display: flex;
+  height: 100%;
+  // align-items: center;
+}
+
+.workbench-addNote {
+  position: fixed;
+  bottom: 16px;
+  right: 32px;
+  @media screen and (max-width: 768px) {
+    right: 24px;
+  }
+}
