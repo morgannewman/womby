@@ -4,7 +4,7 @@ Womby is a delightfully simple web-based notetaking app that autosaves your note
 
 > See it live: <a href="https://womby-staging.firebaseapp.com/" target="_blank">https://womby-staging.firebaseapp.com/</a>
 
-<img src="https://image.ibb.co/b3zYoA/large-screenshot.png" alt="A screenshot of Womby's desktop layout" width="700">
+<img src="src/assets/womby.png" alt="A screenshot of Womby's desktop layout" width="700">
 
 Data persistence is achieved using a RESTful API built with NodeJS and Express. [The backend repo can be found here](https://github.com/morgannewman/womby-backend).
 
