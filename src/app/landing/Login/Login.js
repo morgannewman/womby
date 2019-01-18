@@ -8,7 +8,7 @@ export function LoginPage(props) {
       <h2 className="landing-form-title">Login to Womby</h2>
       <LoginForm />
       <p className="landing-form-redirect">
-        Don't have an account?
+        Don't have an account? {' '}
         <Link className="landing-form-redirect-link" to="/register">
           Register here.
         </Link>

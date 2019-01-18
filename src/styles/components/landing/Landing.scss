@@ -3,7 +3,7 @@
  */
 
 .landing {
-  background: $primary-disabled;
+  background: $primary;
   font-family: 'Roboto Slab', serif;
   color: white;
 }
@@ -62,17 +62,27 @@
 }
 
 .landing-form-title {
+  font-size: 2.4em;
+  letter-spacing: 1px;
   padding-top: 16px;
   padding-bottom: 0;
   margin-bottom: 0;
 }
 
-.landing label {
-  font-size: 1.2em;
+form > label {
+  font-size: 1.3em;
   display: inline-block;
   text-align: left;
   padding-top: 16px;
   padding-bottom: 4px;
+}
+
+.form-error {
+  display: block;
+  padding: 4px 0;
+  margin: 2px 0;
+  border-radius: 5px;
+  background-color: darken(pink, 15%);
 }
 
 .landing-form-redirect {

@@ -8,7 +8,7 @@ export function Registration(props) {
       <h2 className="landing-form-title">Register Now</h2>
       <RegistrationForm />
       <p className="landing-form-redirect">
-        Already have an account?
+        Already have an account? {' '}
         <Link className="landing-form-redirect-link" to="/login">
           Login here.
         </Link>

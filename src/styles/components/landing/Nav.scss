@@ -37,12 +37,15 @@
   font-weight: bold;
 
   &:first-child {
-    margin-right: 8px;
-    background-color: $primary-disabled;
+    margin-right: 12px;
+    padding: 16px 24px;
+    // background-color: $primary-disabled;
+    border: 1px solid white;
   }
 
   &:last-child {
     background-color: $primary-cta;
+    border: 1px solid $primary-cta;
   }
 
   &:link {
