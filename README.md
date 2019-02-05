@@ -2,7 +2,14 @@
 
 Womby is a delightfully simple web-based notetaking app that autosaves your notes as you type. It works on all devices with modern internet browsers.
 
-> See it live: <a href="https://womby-staging.firebaseapp.com/" target="_blank">https://womby-staging.firebaseapp.com/</a>
+
+### Demo Account
+> Email: msgreen@test.com
+>
+> Password: password
+
+See it live:
+> <a href="https://womby-staging.firebaseapp.com/" target="_blank">https://womby-staging.firebaseapp.com/</a>
 
 <img src="src/assets/womby.png" alt="A screenshot of Womby's desktop layout" width="700">
 
